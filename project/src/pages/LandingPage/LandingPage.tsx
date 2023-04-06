@@ -1,7 +1,11 @@
-const LandingPage = () => {
-    return (
-        <h1>Landing Page</h1>
-    )
-}
+import Text from "src/styles/typography";
 
-export default LandingPage
+const LandingPage = () => {
+  return (
+    <Text tag="h2" fontSize="title-3-500" color="brand1">
+      Landing Page
+    </Text>
+  );
+};
+
+export default LandingPage;

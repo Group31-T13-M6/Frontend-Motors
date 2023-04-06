@@ -1,7 +1,11 @@
-const Register = () => {
-    return (
-        <h1>Register</h1>
-    )
-}
+import Text from "src/styles/typography";
 
-export default Register
+const Register = () => {
+  return (
+    <Text tag="h2" fontSize="title-3-500" color="brand3">
+      Register
+    </Text>
+  );
+};
+
+export default Register;
