@@ -74,8 +74,8 @@ const Global = createGlobalStyle`
         padding: 0;
         outline: 0;
         border: 0;
-        line-height: 20px;
         text-decoration: none;
+        list-style: none;
     }
 
     button {

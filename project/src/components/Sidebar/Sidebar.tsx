@@ -1,8 +1,9 @@
 import Text from "src/styles/typography";
+import Aside from "./style";
 
 const Sidebar = () => {
   return (
-    <aside>
+    <Aside>
         <div>
             <Text tag="h2" fontSize="title-5-600" color="grey0">Marca</Text>
             <Text tag="p" fontSize="title-7-600" color="grey3">Porsche</Text>
@@ -55,7 +56,7 @@ const Sidebar = () => {
         </div>
 
         <button>Limpar filtros</button> {/* Componente Button para estilo */}
-    </aside>
+    </Aside>
   );
 };
 
