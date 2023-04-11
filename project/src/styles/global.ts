@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
     :root {
-        --font-family1: 'Lexend', sans-serif;
-        --font-family2:'Inter', sans-serif;
         /* font-size: 62.5%; */
         --brand1: #4529E6;
         --brand2: #5126EA;
@@ -45,22 +43,25 @@ const Global = createGlobalStyle`
         --random11: #5700E3;
         --random12: #30007D;
 
-        --Heading-1-700: 700 2.75rem var(--font-family1);
-        --Heading-2-600: 600 2.25rem var(--font-family1);
+        --font-family1: 'Lexend', sans-serif;
+        --font-family2: 'Inter', sans-serif;
+
+        --Heading-1-700: 700 4.4rem var(--font-family1);
+        --Heading-2-600: 600 3.6rem var(--font-family1);
         --Heading-3-600: 600 3.2rem var(--font-family1);
         --Heading-3-500: 500 3.2rem var(--font-family1);
         --Heading-4-600: 600 2.8rem var(--font-family1);
         --Heading-4-500: 500 2.8rem var(--font-family1);
         --Heading-5-600: 600 2.4rem var(--font-family1);
         --Heading-5-500: 500 2.4rem var(--font-family1);
-        --Heading-6-600: 600 1.25rem var(--font-family1);
-        --Heading-6-500: 500 1.25rem var(--font-family1);
-        --Heading-7-600: 600 1rem var(--font-family1);
-        --Heading-7-500: 500 1rem var(--font-family1);
-        --body-1-400: 400 1rem var(--font-family2);
-        --body-1-600: 600 1rem var(--font-family2);
-        --body-2-400: 400 0.875rem var(--font-family2);
-        --body-2-500: 500 0.875rem var(--font-family2);
+        --Heading-6-600: 600 2rem var(--font-family1);
+        --Heading-6-500: 500 2rem var(--font-family1);
+        --Heading-7-600: 600 1.6rem var(--font-family1);
+        --Heading-7-500: 500 1.6rem var(--font-family1);
+        --body-1-400: 400 1.6rem var(--font-family2);
+        --body-1-600: 600 1.6rem var(--font-family2);
+        --body-2-400: 400 1.4rem var(--font-family2);
+        --body-2-500: 500 1.4rem var(--font-family2);
         --button-big-text: 600 1.6rem var(--font-family2);
         --button-medium-text: 600 1.4rem var(--font-family2);
         --input-placeholder: 400 1.4rem var(--font-family2);
@@ -73,8 +74,8 @@ const Global = createGlobalStyle`
         padding: 0;
         outline: 0;
         border: 0;
-        line-height: 20px;
         text-decoration: none;
+        list-style: none;
     }
 
     button {
