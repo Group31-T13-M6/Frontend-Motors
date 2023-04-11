@@ -1,7 +1,17 @@
-const Footer = () => {
-    return (
-        <h1>Footer</h1>
-    )
-}
+import { FooterEnd } from './style';
 
-export default Footer
+const Footer = () => {
+  return (
+    <FooterEnd>
+      <div className='footer-container'>
+        <div className='logo'>
+          <h1>Motors</h1>
+          <span>shop</span>
+        </div>
+        <span>© 2022 - Todos os direitos reservados.</span>
+      </div>
+    </FooterEnd>
+  );
+};
+
+export default Footer;
