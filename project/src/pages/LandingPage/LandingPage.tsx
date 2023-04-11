@@ -1,16 +1,43 @@
-import Footer from 'src/components/Footer/Footer';
-import HeaderNav from 'src/components/Header/Header';
-import Text from 'src/styles/typography';
+import Sidebar from "src/components/Sidebar/Sidebar";
+import Text from "src/styles/typography";
+import PhotoHome from "../../assets/photoHome.png";
+import ReactPaginate from "react-paginate";
+import HeaderNav from "src/components/Header/Header";
+import Footer from "src/components/Footer/Footer";
+import Card from "src/components/Card/Card";
+import { Section, Main, Separator } from "./styles";
 
 const LandingPage = () => {
   return (
-    <>
-      <HeaderNav />
-      <Text tag='h2' fontSize='title-3-500' color='brand1'>
-        Landing Page
-      </Text>
-      <Footer />
-    </>
+    <div>
+      <HeaderNav/>
+      
+      <Section>
+        <div className="intro-img">
+          <img src={PhotoHome} alt="Carro da BMW"/>
+        </div>
+
+        <div className="intro-text">
+          <Text tag="h1" fontSize="title-2-600" color="grey10">Motors Shop</Text>
+          <Text tag="p" fontSize="title-5-600" color="grey10">A melhor plataforma de anúncios de carros do país</Text>
+        </div>
+      </Section>
+
+      <Separator>
+        <Sidebar/>
+
+        <Main>
+          <Card/>
+
+          <ReactPaginate
+          previousLabel={""}
+          nextLabel = {"Seguinte >"}
+          pageCount={1}/>
+        </Main>
+      </Separator>
+
+      <Footer/>
+    </div>
   );
 };
 

@@ -8,6 +8,7 @@ export const FooterEnd = styled.footer`
   margin-top: 40px;
 
   .footer-container {
+    font: var(--body-2-400);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,6 +17,7 @@ export const FooterEnd = styled.footer`
     max-width: 1600px;
 
     .logo {
+      font: var(--Heading-7-600);
       display: flex;
       gap: 0.5rem;
       align-items: baseline;

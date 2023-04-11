@@ -17,17 +17,20 @@ export const Header = styled.header`
     justify-content: space-between;
 
     .logo {
+      font: var(--Heading-7-600);
       display: flex;
       gap: 0.5rem;
       align-items: baseline;
-
+      padding: 10px;
       background: linear-gradient(90deg, #0b0d0d -1.61%, #4529e6 100.99%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .box-options {
-      width: 18.75rem;
+      padding: 10px;
+      font: var(--body-1-600);
+      width: 30rem;
       height: 5rem;
       display: flex;
       gap: 2.75rem;

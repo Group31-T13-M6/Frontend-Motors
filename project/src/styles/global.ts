@@ -43,6 +43,9 @@ const Global = createGlobalStyle`
         --random11: #5700E3;
         --random12: #30007D;
 
+        --font-family1: 'Lexend', sans-serif;
+        --font-family2: 'Inter', sans-serif;
+
         --Heading-1-700: 700 4.4rem var(--font-family1);
         --Heading-2-600: 600 3.6rem var(--font-family1);
         --Heading-3-600: 600 3.2rem var(--font-family1);
@@ -71,8 +74,8 @@ const Global = createGlobalStyle`
         padding: 0;
         outline: 0;
         border: 0;
-        line-height: 20px;
         text-decoration: none;
+        list-style: none;
     }
 
     button {
