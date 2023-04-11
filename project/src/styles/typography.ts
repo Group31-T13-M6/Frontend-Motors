@@ -56,27 +56,19 @@ const Text = styled(TitleComponent)`
         `;
       case "title-6-600":
         return css`
-          font-size: 2rem;
-          font-weight: 600;
-          font-family: var(--font-family1);
+          font: var(--Heading-6-600);
         `;
       case "title-6-500":
         return css`
-          font-size: 2rem;
-          font-weight: 500;
-          font-family: var(--font-family1);
+          font: var(--Heading-6-500);
         `;
       case "title-7-600":
         return css`
-          font-size: 1.6rem;
-          font-weight: 600;
-          font-family: var(--font-family1);
+          font: var(--Heading-7-600);
         `;
       case "title-7-500":
         return css`
-          font-size: 1.6rem;
-          font-weight: 500;
-          font-family: var(--font-family1);
+          font: var(--Heading-7-500);
         `;
       case "body-1-400":
         return css`
@@ -101,9 +93,7 @@ const Text = styled(TitleComponent)`
 
       case "body-2-500":
         return css`
-          font-size: 1.4rem;
-          font-weight: 500;
-          font-family: var(--font-family2);
+          font: var(--body-2-500);
         `;
 
       case "button-big-text":
