@@ -3,6 +3,8 @@ import Text from "src/styles/typography";
 import { useNavigate } from "react-router-dom";
 import ImagemItem from "../ImageItem/ImageItem";
 import MainS from "./styled";
+import Footer from "../Footer/Footer";
+import HeaderNav from "../Header/Header";
 
 const Product = () => {
   const [chosenProduct, setChosenProduct] = useState({
@@ -72,7 +74,6 @@ const Product = () => {
 
   return (
     <>
-      <header></header>
       <MainS>
         <section>
           <div>
@@ -80,17 +81,19 @@ const Product = () => {
               <img src={chosenProduct.images[0].url} alt="Imagem Product" />
             </div>
           </div>
-          <ul>
+          <div className="container__list">
             <Text tag="h6" fontSize="title-6-600" color="grey1">
               Fotos
             </Text>
-            {chosenProduct.images.map(
-              (image) =>
-                image.position !== 1 && (
-                  <ImagemItem key={image.id} image={image} />
-                )
-            )}
-          </ul>
+            <ul>
+              {chosenProduct.images.map(
+                (image) =>
+                  image.position !== 1 && (
+                    <ImagemItem key={image.id} image={image} />
+                  )
+              )}
+            </ul>
+          </div>
         </section>
         <section>
           <div>
@@ -112,9 +115,9 @@ const Product = () => {
             </div>
             <button onClick={callBackBuy}>Comprar</button>
           </div>
+          <div></div>
         </section>
       </MainS>
-      <footer></footer>
     </>
   );
 };
