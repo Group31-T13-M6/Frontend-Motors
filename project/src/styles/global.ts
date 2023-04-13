@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
     :root {
@@ -85,6 +85,6 @@ const Global = createGlobalStyle`
         height: 48px;
         width: 146px;
     }
-`
+`;
 
-export default Global
+export default Global;
