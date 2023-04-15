@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
     :root {
@@ -79,10 +79,15 @@ const Global = createGlobalStyle`
 
     button {
         cursor: pointer;
-        padding: 12px 28px;
         border-radius: 4px;
-        height: 48px;
-        width: 146px;
+        font: var(--button-big-text);
+        width: 119px;
+        height: 38px;
+        transition: 0.5s;
+        &:hover {
+            transition: 0.5s;
+            transform: scale(1.1);
+        }
     }
 `;
 
