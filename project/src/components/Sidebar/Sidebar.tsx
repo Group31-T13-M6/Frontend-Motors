@@ -45,13 +45,13 @@ const Sidebar = () => {
 
         <div>
             <Text tag="h2" fontSize="title-5-600" color="grey0">Km</Text>
-            <button>Mímimo</button> {/* Componente Button para estilo */}
+            <button>Mínimo</button> {/* Componente Button para estilo */}
             <button>Máximo</button> {/* Componente Button para estilo */}
         </div>
         
         <div>
             <Text tag="h2" fontSize="title-5-600" color="grey0">Preço</Text>
-            <button>Mímimo</button> {/* Componente Button para estilo */}
+            <button>Mínimo</button> {/* Componente Button para estilo */}
             <button>Máximo</button> {/* Componente Button para estilo */}
         </div>
 

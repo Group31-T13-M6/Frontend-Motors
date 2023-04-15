@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  width: 100vw;
   height: 5rem;
   background-color: var(--grey10);
   border-bottom: 2px solid var(--grey6);
@@ -10,7 +9,6 @@ export const Header = styled.header`
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 60px;
 
     display: flex;
     align-items: center;
@@ -30,7 +28,6 @@ export const Header = styled.header`
     .box-options {
       padding: 10px;
       font: var(--body-1-600);
-      width: 30rem;
       height: 5rem;
       display: flex;
       gap: 2.75rem;
@@ -49,10 +46,11 @@ export const Header = styled.header`
         color: var(--grey0);
         border: 1.5px solid var(--grey4);
       }
+      @media (max-width: 768px) {
+        display: none;
+        // caso seja preciso fazer responsividade
+      }
     }
   }
 
-  @media (min-width: 768px) {
-    // caso seja preciso fazer responsividade
-  }
 `;
