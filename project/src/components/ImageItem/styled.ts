@@ -18,9 +18,13 @@ const LiS = styled.li`
     img {
         width: 80%;
     }
-    @media (min-width: 775px) {
+    @media (min-width: 390px) {
+        width: 97px;
+        height: 97px;
     }
     @media (min-width: 1200px) {
+        width: 108px;
+        height: 108px;
     }
 `;
 

@@ -14,6 +14,7 @@ const MainS = styled.main`
         & > div:first-child {
             background-color: var(--brand1);
             height: 436px;
+            width: 100%;
 
             display: flex;
             flex-direction: column;
@@ -31,8 +32,8 @@ const MainS = styled.main`
                 max-width: 752px;
                 width: 95%;
                 height: 355px;
-                & > img {
-                    width: 80%;
+                img {
+                    width: 77%;
                 }
             }
         }
@@ -46,6 +47,7 @@ const MainS = styled.main`
             border-radius: 4px;
 
             width: 95%;
+            max-width: 752px;
             height: 326.91px;
             padding: 28px;
 
@@ -91,6 +93,7 @@ const MainS = styled.main`
             border-radius: 4px;
 
             width: 95%;
+            max-width: 752px;
             margin-top: 24px;
             padding: 36px 28px;
 
@@ -107,6 +110,8 @@ const MainS = styled.main`
 
         & > div:first-child {
             width: 95%;
+            max-width: 440px;
+            max-height: 377px;
 
             background-color: var(--grey10);
             padding: 36px 28px;
@@ -122,9 +127,40 @@ const MainS = styled.main`
             }
         }
     }
-    @media (min-width: 390px) {
-    }
-    @media (min-width: 1200px) {
+
+    @media (min-width: 1240px) {
+        background: linear-gradient(
+            to bottom,
+            var(--brand1) calc(100% - 327px),
+            var(--grey8) calc(100% - 516px)
+        );
+        flex-direction: row;
+        justify-content: center;
+
+        section:first-child {
+            & > div:first-child {
+                background-color: unset;
+                height: 516px;
+
+                & > div {
+                }
+            }
+            & > div:nth-child(2) {
+                margin-top: -92px;
+                height: 239.39px;
+                padding: 28px 44px;
+                & > div {
+                    flex-direction: row;
+                    align-items: center;
+                }
+            }
+        }
+        section:nth-child(2) {
+            margin-top: 45px;
+            & > div:first-child {
+                padding: 36px 44px;
+            }
+        }
     }
 `;
 

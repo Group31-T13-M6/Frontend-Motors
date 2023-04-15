@@ -89,6 +89,7 @@ const Product = () => {
 
     return (
         <>
+            <HeaderNav />
             <MainS>
                 <section>
                     <div>
@@ -161,6 +162,7 @@ const Product = () => {
                     setOutClick={setOutClick}
                 />
             </MainS>
+            <Footer />
         </>
     );
 };

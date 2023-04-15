@@ -40,8 +40,13 @@ const AsideS = styled.aside`
             align-items: center;
             height: 239px;
             & > img {
-                width: 80%;
+                width: 77%;
             }
+        }
+    }
+    @media (min-width: 1240px) {
+        & > div:first-child {
+            padding: 16px 24px;
         }
     }
 `;
