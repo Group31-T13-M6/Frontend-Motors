@@ -15,6 +15,7 @@ export const Section = styled.section`
 
   .intro-text {
     z-index: 2;
+    padding: 1rem;
   }
 
   &::before {
@@ -29,13 +30,17 @@ export const Section = styled.section`
 `;
 
 export const Separator = styled.div`
+  display: flex;
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
-  padding: 60px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  padding: 1rem;
   gap: 20px;
 `;
 
-export const Main = styled.main``;
+export const Main = styled.main`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+`;

@@ -1,36 +1,41 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterEnd = styled.footer`
-  width: 100vw;
-  height: 8.75rem;
   background-color: var(--grey0);
   color: var(--whiteFixed);
-  margin-top: 40px;
-
-  .footer-container {
-    font: var(--body-2-400);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
-    max-width: 1600px;
-
-    .logo {
-      font: var(--Heading-7-600);
-      display: flex;
-      gap: 0.5rem;
-      align-items: baseline;
-      margin-top: 45px;
+  
+  button {
+    background-color: var(--grey1);
+    
+    svg {
+      color: var(--grey10);
+      font-size: 1rem;
     }
   }
+  
+  .footer-container {
+    font: var(--body-2-400);
+    min-height: 140px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
+  }
 
-  @media (min-width: 768px) {
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @media (max-width: 630px) {
     .footer-container {
-      align-items: baseline;
-      padding: 0 60px;
-      flex-direction: row;
-      gap: 20rem;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 `;

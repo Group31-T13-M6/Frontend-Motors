@@ -27,12 +27,14 @@ const LandingPage = () => {
 
         <Main>
           <Card />
-
-          <ReactPaginate
+          <Card />
+          <Card />
+          <Card />
+          {/* <ReactPaginate
             previousLabel={""}
             nextLabel={"Seguinte >"}
             pageCount={1}
-          />
+          /> */}
         </Main>
       </Separator>
 
