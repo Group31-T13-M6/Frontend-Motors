@@ -3,16 +3,17 @@ import styled from "styled-components";
 export const FooterEnd = styled.footer`
   background-color: var(--grey0);
   color: var(--whiteFixed);
-  
+  width: 100vw;
+
   button {
     background-color: var(--grey1);
-    
+
     svg {
       color: var(--grey10);
       font-size: 1rem;
     }
   }
-  
+
   .footer-container {
     font: var(--body-2-400);
     min-height: 140px;

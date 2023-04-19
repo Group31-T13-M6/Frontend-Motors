@@ -1,10 +1,17 @@
-import Text from "src/styles/typography";
+import FormLogin from "src/components/FormLogin";
+import HeaderNav from "../../components/Header/Header";
+import { MainBase } from "src/styles/components/Main";
+import Footer from "src/components/Footer/Footer";
 
 const Login = () => {
   return (
-    <Text tag="h2" fontSize="title-3-500" color="brand3">
-      Login
-    </Text>
+    <>
+      <HeaderNav></HeaderNav>
+      <MainBase>
+        <FormLogin />
+      </MainBase>
+      <Footer />
+    </>
   );
 };
 
