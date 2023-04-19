@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Header = styled.header`
   height: 5rem;
@@ -7,7 +7,7 @@ export const Header = styled.header`
 
   .header-container {
     max-width: 1600px;
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
 
     display: flex;
@@ -52,5 +52,4 @@ export const Header = styled.header`
       }
     }
   }
-
 `;
