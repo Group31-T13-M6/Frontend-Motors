@@ -1,15 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const CardUl = styled.ul`
-  list-style: none;
-
-  li {
-    /* padding: 10px; */
-    /* max-width: 420px; */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+const CardComponent = styled.li`
+  margin-bottom: 2rem;
 
   .img-Wrapper {
     background: var(--grey7);
@@ -28,6 +20,7 @@ const CardUl = styled.ul`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin: 1rem 0;
   }
 
   .car-lowInfo {
@@ -47,4 +40,4 @@ const CardUl = styled.ul`
   }
 `;
 
-export default CardUl;
+export default CardComponent;

@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Aside = styled.aside`
+  height: 20rem;
+  overflow: overlay;
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FooterEnd = styled.footer`
   background-color: var(--grey0);
@@ -19,7 +19,7 @@ export const FooterEnd = styled.footer`
     min-height: 140px;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

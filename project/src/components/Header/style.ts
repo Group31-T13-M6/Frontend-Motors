@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { FaBars } from 'react-icons/fa';
+import styled from 'styled-components';
 
 export const Header = styled.header`
   height: 5rem;
@@ -9,10 +10,17 @@ export const Header = styled.header`
     max-width: 1600px;
     width: 100vw;
     margin: 0 auto;
+    padding: 0 2rem;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    nav {
+      .toggle {
+        display: block;
+      }
+    }
 
     .logo {
       font: var(--Heading-7-600);
@@ -33,7 +41,7 @@ export const Header = styled.header`
       gap: 2.75rem;
       justify-content: center;
       align-items: center;
-      border-left: 2px solid var(--grey6);
+      border: none;
 
       a {
         text-decoration: none;
@@ -44,12 +52,61 @@ export const Header = styled.header`
         padding: 12px 28px;
         border-radius: 4px;
         color: var(--grey0);
-        border: 1.5px solid var(--grey4);
+        line-height: 3rem;
       }
-      @media (max-width: 768px) {
-        display: none;
-        // caso seja preciso fazer responsividade
+
+      @media (min-width: 767px) {
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        border-left: 2px solid var(--grey6);
+
+        li:last-child {
+          border: 1.5px solid var(--grey4);
+        }
+
+        .navigation-menu li {
+          display: block;
+          align-items: center;
+          margin-left: 1.875rem;
+        }
       }
     }
+  }
+`;
+
+export const Bars = styled(FaBars)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 75%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+`;
+
+export const NavMenu = styled.ul`
+  display: none;
+  &.expanded {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-color: var(--whiteFixed);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    gap: 4rem;
+    z-index: 1;
+  }
+  @media screen and (min-width: 767px) {
+    display: flex;
+    gap: 1rem;
   }
 `;
