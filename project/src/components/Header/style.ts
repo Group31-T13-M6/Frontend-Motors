@@ -1,34 +1,30 @@
 import styled from "styled-components";
 
-export const Header = styled.header`
-  height: 5rem;
-  background-color: var(--grey10);
-  border-bottom: 2px solid var(--grey6);
+interface IHeaderStyle {
+  mobileOpen: boolean;
+}
 
-  .header-container {
-    max-width: 1600px;
-    width: 100vw;
-    margin: 0 auto;
+export const DivHeader = styled.div<IHeaderStyle>`
+  position: relative;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    .logo {
-      font: var(--Heading-7-600);
-      display: flex;
-      gap: 0.5rem;
-      align-items: baseline;
-      padding: 10px;
-      background: linear-gradient(90deg, #0b0d0d -1.61%, #4529e6 100.99%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  .logo {
+    padding: 10px;
+  }
 
-    .box-options {
+  .box-options {
+    position: relative;
+    height: 5rem;
+    div {
       padding: 10px;
       font: var(--body-1-600);
-      height: 5rem;
+      height: 100%;
       display: flex;
       gap: 2.75rem;
       justify-content: center;
@@ -46,9 +42,56 @@ export const Header = styled.header`
         color: var(--grey0);
         border: 1.5px solid var(--grey4);
       }
-      @media (max-width: 768px) {
-        display: none;
-        // caso seja preciso fazer responsividade
+    }
+
+    button {
+      display: none;
+    }
+
+    @media (max-width: 508px) {
+      border-bottom: 2px solid
+        ${(props) => (props.mobileOpen ? "transparent" : "var(--grey6)")};
+
+      .box-options {
+      }
+      div {
+        position: fixed;
+
+        display: ${(props) => (props.mobileOpen ? "flex" : "none")};
+        flex-direction: column;
+        justify-content: start;
+
+        width: 100vw;
+        height: 8rem;
+        right: 0;
+        background-color: white;
+        gap: 1rem;
+
+        border: none;
+        border-bottom: 2px solid var(--grey6);
+
+        a {
+          max-width: 22rem;
+        }
+      }
+
+      button {
+        width: 3rem;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font: var(--Heading-3-600);
+
+        svg {
+          display: flex;
+
+          &:nth-child(${(props) => (props.mobileOpen ? "1" : "2")}) {
+            display: none;
+          }
+        }
       }
     }
   }
