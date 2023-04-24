@@ -75,3 +75,17 @@ export interface ITitleComponent {
   color?: IColor;
   fontSize?: IFontSize;
 }
+
+export interface IPropsStyle {
+  background?: string;
+  textColor?: string;
+  width?: string;
+  height?: string;
+  borderColor?: string;
+  font?: string;
+  alignItems?: string;
+  justifyContent?: string;
+  gap?: string;
+  placeholderColor?: string;
+  placeholderColorFocus?: string;
+}

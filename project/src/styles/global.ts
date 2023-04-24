@@ -84,18 +84,14 @@ const Global = createGlobalStyle`
         align-items: center;
         background: var(--grey8);
     }
-
     button {
-        cursor: pointer;
-        border-radius: 4px;
-        font: var(--button-big-text);
-        width: 119px;
-        height: 38px;
+      cursor: pointer;
+      background: none;
+      transition: 0.5s;
+      &:hover {
         transition: 0.5s;
-        &:hover {
-            transition: 0.5s;
-            transform: scale(1.1);
-        }
+        transform: scale(1.1);
+      }
     }
 `;
 

@@ -1,42 +1,30 @@
-import { FaBars } from 'react-icons/fa';
 import styled from 'styled-components';
 
-export const Header = styled.header`
-  height: 5rem;
-  background-color: var(--grey10);
-  border-bottom: 2px solid var(--grey6);
+interface IHeaderStyle {
+  mobileOpen: boolean;
+}
 
-  .header-container {
-    max-width: 1600px;
-    width: 100vw;
-    margin: 0 auto;
-    padding: 0 2rem;
+export const DivHeader = styled.div<IHeaderStyle>`
+  position: relative;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    nav {
-      .toggle {
-        display: block;
-      }
-    }
+  .logo {
+    padding: 10px;
+  }
 
-    .logo {
-      font: var(--Heading-7-600);
-      display: flex;
-      gap: 0.5rem;
-      align-items: baseline;
-      padding: 10px;
-      background: linear-gradient(90deg, #0b0d0d -1.61%, #4529e6 100.99%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .box-options {
+  .box-options {
+    position: relative;
+    height: 5rem;
+    div {
       padding: 10px;
       font: var(--body-1-600);
-      height: 5rem;
+      height: 100%;
       display: flex;
       gap: 2.75rem;
       justify-content: center;
@@ -54,59 +42,57 @@ export const Header = styled.header`
         color: var(--grey0);
         line-height: 3rem;
       }
+    }
 
-      @media (min-width: 767px) {
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        border-left: 2px solid var(--grey6);
+    button {
+      display: none;
+    }
 
-        li:last-child {
-          border: 1.5px solid var(--grey4);
+    @media (max-width: 508px) {
+      border-bottom: 2px solid
+        ${(props) => (props.mobileOpen ? "transparent" : "var(--grey6)")};
+
+      .box-options {
+      }
+      div {
+        position: fixed;
+
+        display: ${(props) => (props.mobileOpen ? "flex" : "none")};
+        flex-direction: column;
+        justify-content: start;
+
+        width: 100vw;
+        height: 8rem;
+        right: 0;
+        background-color: white;
+        gap: 1rem;
+
+        border: none;
+        border-bottom: 2px solid var(--grey6);
+
+        a {
+          max-width: 22rem;
         }
+      }
 
-        .navigation-menu li {
-          display: block;
-          align-items: center;
-          margin-left: 1.875rem;
+      button {
+        width: 3rem;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font: var(--Heading-3-600);
+
+        svg {
+          display: flex;
+
+          &:nth-child(${(props) => (props.mobileOpen ? "1" : "2")}) {
+            display: none;
+          }
         }
       }
     }
-  }
-`;
-
-export const Bars = styled(FaBars)`
-  display: none;
-  @media screen and (max-width: 767px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-`;
-
-export const NavMenu = styled.ul`
-  display: none;
-  &.expanded {
-    display: flex;
-    align-items: center;
-    padding-top: 2rem;
-    width: 100%;
-    height: calc(100vh - 77px);
-    background-color: var(--whiteFixed);
-    position: absolute;
-    top: 60px;
-    left: 0;
-    flex-direction: column;
-    gap: 4rem;
-    z-index: 1;
-  }
-  @media screen and (min-width: 767px) {
-    display: flex;
-    gap: 1rem;
   }
 `;
