@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface IHeaderStyle {
   mobileOpen: boolean;
@@ -29,7 +29,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
       gap: 2.75rem;
       justify-content: center;
       align-items: center;
-      border-left: 2px solid var(--grey6);
+      border: none;
 
       a {
         text-decoration: none;
@@ -40,7 +40,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
         padding: 12px 28px;
         border-radius: 4px;
         color: var(--grey0);
-        border: 1.5px solid var(--grey4);
+        line-height: 3rem;
       }
     }
 

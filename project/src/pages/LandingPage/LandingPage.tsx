@@ -1,10 +1,10 @@
-import Sidebar from "src/components/Sidebar/Sidebar";
-import Text from "src/styles/typography";
-import ReactPaginate from "react-paginate";
-import HeaderNav from "src/components/Header/Header";
-import Footer from "src/components/Footer/Footer";
-import Card from "src/components/Card/Card";
-import { Section, Main, Separator } from "./styles";
+import Sidebar from 'src/components/Sidebar/Sidebar';
+import Text from 'src/styles/typography';
+import ReactPaginate from 'react-paginate';
+import HeaderNav from 'src/components/Header/Header';
+import Footer from 'src/components/Footer/Footer';
+import Card from 'src/components/Card/Card';
+import { Section, Main, Separator } from './styles';
 
 const LandingPage = () => {
   return (
@@ -12,11 +12,11 @@ const LandingPage = () => {
       <HeaderNav />
 
       <Section>
-        <div className="intro-text">
-          <Text tag="h1" fontSize="title-2-600" color="grey10">
+        <div className='intro-text'>
+          <Text tag='h1' fontSize='title-2-600' color='grey10'>
             Motors Shop
           </Text>
-          <Text tag="p" fontSize="title-5-600" color="grey10">
+          <Text tag='p' fontSize='title-5-600' color='grey10'>
             A melhor plataforma de anúncios de carros do país
           </Text>
         </div>
@@ -26,15 +26,17 @@ const LandingPage = () => {
         <Sidebar />
 
         <Main>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          {/* <ReactPaginate
+          <ul>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            {/* <ReactPaginate
             previousLabel={""}
             nextLabel={"Seguinte >"}
             pageCount={1}
           /> */}
+          </ul>
         </Main>
       </Separator>
 
