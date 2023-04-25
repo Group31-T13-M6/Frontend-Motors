@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
     :root {
@@ -76,22 +76,13 @@ const Global = createGlobalStyle`
         text-decoration: none;
         list-style: none;
     }
-    body {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: var(--grey8);
+    body, html {
+        height: 100%;
     }
     button {
       cursor: pointer;
       background: none;
       transition: 0.5s;
-      &:hover {
-        transition: 0.5s;
-        transform: scale(1.1);
-      }
     }
 `;
 

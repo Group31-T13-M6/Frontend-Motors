@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Header = styled.header`
   height: 5rem;
@@ -7,8 +7,6 @@ export const Header = styled.header`
   position: fixed;
   z-index: 3;
   inset: 0;
-  width: 100vw;
-
 
   .header-container {
     position: relative;
