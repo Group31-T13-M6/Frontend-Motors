@@ -1,16 +1,16 @@
-import { ToastContainer } from 'react-toastify'
-import { injectStyle } from 'react-toastify/dist/inject-style'
-import Routes from './routes'
+import { ToastContainer } from 'react-toastify';
+import { injectStyle } from 'react-toastify/dist/inject-style';
+import Routes from './routes';
 
 function App() {
-  injectStyle()
-  
+  injectStyle();
+
   return (
     <div>
-      <ToastContainer/>
-      <Routes/>
+      <ToastContainer />
+      <Routes />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

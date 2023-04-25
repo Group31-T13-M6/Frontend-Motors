@@ -1,16 +1,19 @@
 import Sidebar from 'src/components/Sidebar/Sidebar';
 import Text from 'src/styles/typography';
-import ReactPaginate from 'react-paginate';
 import HeaderNav from 'src/components/Header/Header';
 import Footer from 'src/components/Footer/Footer';
-import Card from 'src/components/Card/Card';
+import SideBarMobile from 'src/components/Sidebar/Mobile/SidebarMobile';
 import { Section, Main, Separator } from './styles';
+import Card from 'src/components/Card/Card';
+import { useContext } from 'react';
+import { HomeContext } from 'src/context/HomeContext';
 
 const LandingPage = () => {
-  return (
-    <div>
-      <HeaderNav />
+  const { list } = useContext(HomeContext);
 
+  return (
+    <>
+      <HeaderNav />
       <Section>
         <div className='intro-text'>
           <Text tag='h1' fontSize='title-2-600' color='grey10'>
@@ -24,24 +27,13 @@ const LandingPage = () => {
 
       <Separator>
         <Sidebar />
-
         <Main>
-          <ul>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            {/* <ReactPaginate
-            previousLabel={""}
-            nextLabel={"Seguinte >"}
-            pageCount={1}
-          /> */}
-          </ul>
+          <SideBarMobile />
+          <Card list={list} />
         </Main>
       </Separator>
-
       <Footer />
-    </div>
+    </>
   );
 };
 

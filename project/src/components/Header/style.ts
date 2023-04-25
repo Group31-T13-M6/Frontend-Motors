@@ -21,6 +21,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
   .box-options {
     position: relative;
     height: 5rem;
+    border: none;
     div {
       padding: 10px;
       font: var(--body-1-600);
@@ -29,7 +30,6 @@ export const DivHeader = styled.div<IHeaderStyle>`
       gap: 2.75rem;
       justify-content: center;
       align-items: center;
-      border: none;
 
       a {
         text-decoration: none;
@@ -48,16 +48,17 @@ export const DivHeader = styled.div<IHeaderStyle>`
       display: none;
     }
 
-    @media (max-width: 508px) {
+    @media (max-width: 767px) {
       border-bottom: 2px solid
-        ${(props) => (props.mobileOpen ? "transparent" : "var(--grey6)")};
+        ${(props) => (props.mobileOpen ? 'transparent' : 'var(--grey6)')};
 
       .box-options {
+        border-left: 2px solid var(--grey6);
       }
       div {
         position: fixed;
 
-        display: ${(props) => (props.mobileOpen ? "flex" : "none")};
+        display: ${(props) => (props.mobileOpen ? 'flex' : 'none')};
         flex-direction: column;
         justify-content: start;
 
@@ -88,7 +89,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
         svg {
           display: flex;
 
-          &:nth-child(${(props) => (props.mobileOpen ? "1" : "2")}) {
+          &:nth-child(${(props) => (props.mobileOpen ? '1' : '2')}) {
             display: none;
           }
         }

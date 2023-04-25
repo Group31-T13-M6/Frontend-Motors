@@ -1,5 +1,4 @@
-import { colors } from "src/styles/components/Colors";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface IHeaderStyle {
   mobileOpen: boolean;
