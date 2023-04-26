@@ -2,9 +2,9 @@ import { ReactNode } from "react";
 import { IUserLogin } from "./login";
 
 export interface IProvider {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 export interface IContext {
-  postLogin(data: IUserLogin): void;
+    postLogin(data: IUserLogin): void;
 }
