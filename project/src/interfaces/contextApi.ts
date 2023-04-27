@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
-import { IUserLogin } from "./login";
+import { IUserLogin, IUserRegister } from "./user";
 
 export interface IProvider {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export interface IContext {
-    postLogin(data: IUserLogin): void;
+  postLogin(data: IUserLogin): void;
+  postRegister(data: IUserRegister): void;
 }
