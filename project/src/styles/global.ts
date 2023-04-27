@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
     :root {
@@ -76,9 +76,11 @@ const Global = createGlobalStyle`
         text-decoration: none;
         list-style: none;
     }
+
     body, html {
         height: 100%;
     }
+    
     button {
       cursor: pointer;
       background: none;
