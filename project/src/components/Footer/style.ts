@@ -3,10 +3,12 @@ import styled from 'styled-components';
 export const FooterEnd = styled.footer`
   background-color: var(--grey0);
   color: var(--whiteFixed);
-  width: 100vw;
+  width: 100%;
 
   button {
     background-color: var(--grey1);
+    padding: 0.5rem;
+    border-radius: 50%;
 
     svg {
       color: var(--grey10);

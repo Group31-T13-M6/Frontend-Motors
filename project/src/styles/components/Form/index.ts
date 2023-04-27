@@ -30,11 +30,6 @@ const FormStyled = styled.section`
     justify-content: center;
     gap: 20px;
     background-color: var(--grey10);
-
-    p {
-      font: var(--body-2-400);
-      color: var(--grey2);
-    }
   }
 
   .two-components {

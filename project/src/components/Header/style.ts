@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface IHeaderStyle {
   mobileOpen: boolean;
@@ -50,7 +50,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
 
     @media (max-width: 767px) {
       border-bottom: 2px solid
-        ${(props) => (props.mobileOpen ? 'transparent' : 'var(--grey6)')};
+        ${(props) => (props.mobileOpen ? "transparent" : "var(--grey6)")};
 
       .box-options {
         border-left: 2px solid var(--grey6);
@@ -58,11 +58,10 @@ export const DivHeader = styled.div<IHeaderStyle>`
       div {
         position: fixed;
 
-        display: ${(props) => (props.mobileOpen ? 'flex' : 'none')};
+        display: ${(props) => (props.mobileOpen ? "flex" : "none")};
         flex-direction: column;
         justify-content: start;
-
-        width: 100vw;
+        width: 100%;
         height: 8rem;
         right: 0;
         background-color: white;
@@ -89,7 +88,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
         svg {
           display: flex;
 
-          &:nth-child(${(props) => (props.mobileOpen ? '1' : '2')}) {
+          &:nth-child(${(props) => (props.mobileOpen ? "1" : "2")}) {
             display: none;
           }
         }

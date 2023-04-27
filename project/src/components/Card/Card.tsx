@@ -17,7 +17,7 @@ const Card = ({
   const navigate = useNavigate();
 
   return (
-    <CardComponent onClick={() => navigate(`/produto/${id}`)}>
+    <CardComponent onClick={() => navigate(`/anuncios/${id}`)}>
       <div>
         <img className="car-image" src={images[0].url} alt="" />
         <div className="car-mainInfo">

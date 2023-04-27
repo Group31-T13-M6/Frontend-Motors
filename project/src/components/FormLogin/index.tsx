@@ -35,10 +35,13 @@ const FormLogin = () => {
           <label htmlFor="email">E-mail</label>
           <input
             id="email"
-            type="email"
+            type="text"
             placeholder="Digitar email"
             {...register("email")}
           />
+          <Text color="brand1" fontSize="body-2-400">
+            {errors.email?.message}
+          </Text>
         </Input>
         <Input>
           <label htmlFor="password">Senha</label>
@@ -48,12 +51,14 @@ const FormLogin = () => {
             placeholder="Digitar senha"
             {...register("password")}
           />
-          <p>{errors.password?.message}</p>
+          <Text color="alert1" fontSize="title-1-700">
+            {errors.password?.message}
+          </Text>
         </Input>
         <MainButton type="submit" background={colors.brand1} textColor="white">
           Entrar
         </MainButton>
-        <p>Ainda não possui conta?</p>
+        <Text>Ainda não possui conta?</Text>
         <LinkBorder href="/registro">Cadastrar</LinkBorder>
       </form>
     </FormStyled>

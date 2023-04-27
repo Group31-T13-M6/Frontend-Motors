@@ -8,7 +8,7 @@ const Text = styled(TitleComponent)`
     switch (fontSize) {
       case "title-1-700":
         return css`
-          font: var(--Heading-1-600);
+          font: var(--Heading-1-700);
         `;
       case "title-2-600":
         return css`

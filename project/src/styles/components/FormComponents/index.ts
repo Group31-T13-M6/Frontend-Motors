@@ -30,7 +30,7 @@ export const Input = styled.div<IPropsStyle>`
 
   p {
     height: 18px;
-    font: var(--button-medium-text);
+    font: var(---body-2-400);
     width: 90%;
     color: ${colors.alert1};
   }

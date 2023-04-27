@@ -154,6 +154,7 @@ const MainS = styled.main`
         & > div {
         }
       }
+      
       & > div:nth-child(2) {
         margin-top: -92px;
         height: 239.39px;
