@@ -65,6 +65,7 @@ const Global = createGlobalStyle`
         --button-medium-text: 600 0.875rem var(--font-family2);
         --input-placeholder: 400 1rem var(--font-family2);
         --input-label: 500 0.875rem var(--font-family2);
+        
     }
 
     * {
@@ -79,6 +80,7 @@ const Global = createGlobalStyle`
 
     body, html {
         height: 100%;
+        background-color: var(--grey8);
     }
     
     button {

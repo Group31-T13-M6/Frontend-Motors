@@ -1,8 +1,10 @@
 import { createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { IContext, IProvider } from "src/interfaces/contextApi";
-import { IUserLogin } from "src/interfaces/login";
+
 import api from "src/services/api";
+import { IUserLogin, IUserRegister } from "src/interfaces/user";
+import { AxiosError } from "axios";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
@@ -13,15 +15,27 @@ export const AuthProvider = ({ children }: IProvider) => {
     console.log(data);
     try {
       const response = await api.post("/login", data);
-      navigate("/");
+      navigate("/dashboardUsuario");
       return response;
     } catch (error) {
       console.error(error);
     }
   };
 
+  const postRegister = async (data: IUserRegister) => {
+    console.log(data);
+    try {
+      const response = await api.post("/users", data);
+      navigate("/dashboardUsuario");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
+      }
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ postLogin }}>
+    <AuthContext.Provider value={{ postLogin, postRegister }}>
       {children}
     </AuthContext.Provider>
   );
