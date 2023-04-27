@@ -1,7 +1,22 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const CardComponent = styled.li`
   margin-bottom: 2rem;
+  max-width: 328px;
+  width: 100%;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 6px;
+
+  &:hover {
+    scale: 1.03;
+  }
+
+  .car-image {
+    width: 100%;
+  }
 
   .img-Wrapper {
     background: var(--grey7);

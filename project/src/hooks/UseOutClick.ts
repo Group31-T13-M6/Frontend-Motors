@@ -1,23 +1,23 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const useOutClick = (callback: () => void) => {
-    const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const handleOutClick = (e: MouseEvent) => {
-            if (!ref.current?.contains(e.target as HTMLElement)) {
-                callback();
-            }
-        };
+  useEffect(() => {
+    const handleOutClick = (e: MouseEvent) => {
+      if (!ref.current?.contains(e.target as HTMLElement)) {
+        callback();
+      }
+    };
 
-        document.addEventListener('mousedown', handleOutClick);
+    document.addEventListener("mousedown", handleOutClick);
 
-        return () => {
-            document.removeEventListener('mousedown', handleOutClick);
-        };
-    }, []);
+    return () => {
+      document.removeEventListener("mousedown", handleOutClick);
+    };
+  }, []);
 
-    return ref;
+  return ref;
 };
 
 export default useOutClick;

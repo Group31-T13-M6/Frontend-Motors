@@ -7,58 +7,57 @@ import { useContextApi } from "src/context";
 import { Input } from "src/styles/components/FormComponents";
 import { colors } from "src/styles/components/Colors";
 import { useForm } from "react-hook-form";
+import Text from "src/styles/typography";
 
 const schema = yup.object().shape({
-    email: yup
-        .string()
-        .email("Deve ser um email valido")
-        .required("Email é obrigatório"),
-    password: yup.string().required("Senha é obrigatório"),
+  email: yup
+    .string()
+    .email("Deve ser um email valido")
+    .required("Email é obrigatório"),
+  password: yup.string().required("Senha é obrigatório"),
 });
 
 const FormLogin = () => {
-    const { postLogin } = useContextApi();
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm<IUserLogin>({ resolver: yupResolver(schema) });
+  const { postLogin } = useContextApi();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IUserLogin>({ resolver: yupResolver(schema) });
 
-    return (
-        <FormStyled>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit(postLogin)}>
-                <Input>
-                    <label htmlFor="email">Usuário</label>
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="Digitar usuário"
-                        {...register("email")}
-                    />
-                </Input>
-                <Input>
-                    <label htmlFor="password">Senha</label>
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="lorem eeeeeeee"
-                        {...register("password")}
-                    />
-                    <p>{errors.password?.message}</p>
-                </Input>
-                <MainButton
-                    type="submit"
-                    background={colors.brand1}
-                    textColor="white"
-                >
-                    Entrar
-                </MainButton>
-                <p>Ainda não possui conta?</p>
-                <LinkBorder href="/registro">Cadastrar</LinkBorder>
-            </form>
-        </FormStyled>
-    );
+  return (
+    <FormStyled>
+      <Text tag="h2" fontSize="title-5-500">
+        Login
+      </Text>
+      <form onSubmit={handleSubmit(postLogin)}>
+        <Input>
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Digitar email"
+            {...register("email")}
+          />
+        </Input>
+        <Input>
+          <label htmlFor="password">Senha</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Digitar senha"
+            {...register("password")}
+          />
+          <p>{errors.password?.message}</p>
+        </Input>
+        <MainButton type="submit" background={colors.brand1} textColor="white">
+          Entrar
+        </MainButton>
+        <p>Ainda não possui conta?</p>
+        <LinkBorder href="/registro">Cadastrar</LinkBorder>
+      </form>
+    </FormStyled>
+  );
 };
 
 export default FormLogin;
