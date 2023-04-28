@@ -11,6 +11,12 @@ export interface IProductImages {
   position: number;
 }
 
+export interface IProductUser {
+  id: string;
+  name: string;
+  description: string;
+}
+
 export interface iProduct {
   id: string;
   brand: string;
@@ -23,6 +29,7 @@ export interface iProduct {
   fipe_table: number;
   description: string;
   images: IProductImages[];
+  user: IProductUser;
 }
 
 interface IHomeContext {

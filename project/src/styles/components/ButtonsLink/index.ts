@@ -26,7 +26,7 @@ export const LinkBorder = styled.a<IPropsStyle>`
 export const MainButton = styled.button<IPropsStyle>`
   cursor: pointer;
   border-radius: 4px;
-  transition: 0.5s;
+  transition: 0.3s;
 
   display: flex;
   align-items: ${(props) => props.alignItems || 'center'};
@@ -40,7 +40,7 @@ export const MainButton = styled.button<IPropsStyle>`
   font: ${(props) => props.font || 'var(--button-big-text)'};
 
   &:hover {
-    transition: 0.5s;
-    transform: scale(1.1);
+    transition: 0.3s;
+    transform: scale(1.01);
   }
 `;

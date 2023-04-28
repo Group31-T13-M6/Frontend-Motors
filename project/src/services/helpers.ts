@@ -4,3 +4,10 @@ export const formatBRL = (value: number) => {
     currency: "BRL",
   });
 };
+
+export const formatInitialName = (value: string) => {
+  return value
+    .split(" ")
+    .map((str) => str[0])
+    .join("");
+};

@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import Product from 'src/components/Product/Product';
+import Product from 'src/components/Product';
 import DashboardAdm from 'src/pages/DashboardAdm/DashboardAdm';
 import DashboardUser from 'src/pages/DashboardUser/DashboardUser';
-import LandingPage from 'src/pages/LandingPage/LandingPage';
+import LandingPage from 'src/pages/LandingPage';
 import Login from 'src/pages/Login/Login';
 import Register from 'src/pages/Register/Register';
 

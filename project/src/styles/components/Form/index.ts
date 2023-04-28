@@ -15,7 +15,7 @@ const FormStyled = styled.section<IPropsStyled>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 1rem;
   background-color: var(--grey10);
 
   border-radius: 4px;

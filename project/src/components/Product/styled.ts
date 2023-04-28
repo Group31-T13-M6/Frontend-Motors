@@ -8,6 +8,7 @@ const MainS = styled.main`
   margin-top: 60px;
 
   section:first-child {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,11 +31,11 @@ const MainS = styled.main`
 
         margin-top: 45px;
 
-        max-width: 752px;
-        width: 95%;
+        width: 100%;
         height: 355px;
         img {
-          width: 77%;
+          object-fit: cover;
+          object-position: center;
         }
       }
     }
@@ -48,8 +49,7 @@ const MainS = styled.main`
       background-color: var(--grey10);
       border-radius: 4px;
 
-      width: 95%;
-      max-width: 752px;
+      width: 100%;
       height: 326.91px;
       padding: 28px;
 
@@ -85,6 +85,7 @@ const MainS = styled.main`
         background-color: var(--brand1);
         color: var(--whiteFixed);
         padding: 1rem;
+        width: 15%;
         border-radius: 6px;
       }
     }
@@ -97,8 +98,7 @@ const MainS = styled.main`
       background-color: var(--grey10);
       border-radius: 4px;
 
-      width: 95%;
-      max-width: 752px;
+      width: 100%;
       margin-top: 24px;
       padding: 36px 28px;
 
@@ -112,12 +112,13 @@ const MainS = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 70%;
 
     & > div:first-child {
       width: 95%;
       max-width: 752px;
-      max-height: 377px;
       border-radius: 4px;
+      background-color: yellow;
 
       background-color: var(--grey10);
       padding: 36px 28px;
@@ -144,7 +145,7 @@ const MainS = styled.main`
     flex-direction: row;
     justify-content: center;
     margin-top: 4rem;
-    padding-bottom: 2rem;
+    padding: 0 10rem 2rem 10rem;
 
     section:first-child {
       & > div:first-child {
@@ -164,11 +165,28 @@ const MainS = styled.main`
         }
       }
     }
+
     section:nth-child(2) {
       margin-top: 45px;
       & > div:first-child {
         border-radius: 4px;
         padding: 2rem;
+      }
+
+      & > div:last-child {
+        width: 95%;
+        background-color: var(--grey10);
+        padding: 2rem 6rem;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        & > button {
+          width: 100%;
+        }
       }
     }
   }

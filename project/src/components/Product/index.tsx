@@ -8,7 +8,9 @@ import ModalImagens from "../ModalImagens/ModalImagens";
 import api from "src/services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { iProduct } from "src/context/HomeContext";
-import { formatBRL } from "src/services/helpers";
+import { formatBRL, formatInitialName } from "src/services/helpers";
+import { StyledInitialName } from "src/styles/components/StyledInitialName";
+import { MainButton } from "src/styles/components/ButtonsLink";
 
 const Product = () => {
   const [chosenProduct, setChosenProduct] = useState<iProduct>();
@@ -101,7 +103,17 @@ const Product = () => {
                   ))}
                 </ul>
               </div>
-              <div></div>
+              <div>
+                <StyledInitialName w="80" h="80">
+                  {formatInitialName(chosenProduct.user.name)}
+                </StyledInitialName>
+                <Text fontSize="title-6-600">{chosenProduct.user.name}</Text>
+                <Text>{chosenProduct.user.description}</Text>
+
+                <MainButton background="var(--grey0)" textColor="white">
+                  Ver todos os anúncios
+                </MainButton>
+              </div>
             </section>
             <ModalImagens
               infoModal={infoModal}

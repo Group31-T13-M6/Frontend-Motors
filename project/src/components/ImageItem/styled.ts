@@ -10,21 +10,14 @@ const LiS = styled.li`
     align-items: center;
     justify-content: center;
 
-    width: 75px;
-    height: 75px;
+    max-width: 180px;
+    width: 100%;
+    padding: 1rem;
 
     margin-bottom: 50px;
 
     img {
-        width: 80%;
-    }
-    @media (min-width: 390px) {
-        width: 97px;
-        height: 97px;
-    }
-    @media (min-width: 1200px) {
-        width: 108px;
-        height: 108px;
+        width: 100%;
     }
 `;
 

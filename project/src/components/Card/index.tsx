@@ -1,9 +1,9 @@
 import { iProduct } from "src/context/HomeContext";
-import Advertiser from "../../assets/advertiser.png";
 import Text from "src/styles/typography";
 import CardComponent from "./style";
-import { formatBRL } from "src/services/helpers";
+import { formatBRL, formatInitialName } from "src/services/helpers";
 import { useNavigate } from "react-router-dom";
+import { StyledInitialName } from "src/styles/components/StyledInitialName";
 
 const Card = ({
   id,
@@ -13,6 +13,7 @@ const Card = ({
   mileage,
   year,
   price,
+  user,
 }: iProduct) => {
   const navigate = useNavigate();
 
@@ -29,9 +30,11 @@ const Card = ({
           </Text>
         </div>
         <div className="car-advertiser">
-          <img src={Advertiser} alt="Anunciante" />
-          <Text tag="p" fontSize="body-2-400" color="grey2">
-            Evelin Camila
+          <StyledInitialName w="30" h="30">
+            {user.name[0]}
+          </StyledInitialName>
+          <Text tag="p" fontSize="body-2-500" color="grey2">
+            {user.name}
           </Text>
         </div>
         <div className="car-lowInfo">
@@ -55,8 +58,3 @@ const Card = ({
 
 export default Card;
 
-//           {/* <ReactPaginate
-//   previousLabel={""}
-//   nextLabel={"Seguinte >"}
-//   pageCount={1}
-// /> */}

@@ -3,8 +3,8 @@ import Text from "src/styles/typography";
 import HeaderNav from "src/components/Header/Header";
 import Footer from "src/components/Footer/Footer";
 import SideBarMobile from "src/components/Sidebar/Mobile/SidebarMobile";
+import Card from "src/components/Card";
 import { Section, Main, Separator } from "./styles";
-import Card from "src/components/Card/Card";
 import { useContext } from "react";
 import { HomeContext, iProduct } from "src/context/HomeContext";
 

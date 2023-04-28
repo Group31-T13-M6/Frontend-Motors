@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }: IProvider) => {
   const navigate = useNavigate();
 
   const postLogin = async (data: IUserLogin) => {
-    console.log(data);
     try {
       const response = await api.post("/login", data);
       navigate("/dashboardUsuario");

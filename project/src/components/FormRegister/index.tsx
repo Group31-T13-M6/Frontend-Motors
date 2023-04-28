@@ -249,7 +249,7 @@ const FormRegister = () => {
             width="50%"
             onClick={handleClick}
           >
-            Anuciante
+            Anunciante
           </MainButton>
         </div>
 
