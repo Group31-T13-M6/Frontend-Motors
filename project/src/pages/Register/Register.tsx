@@ -1,10 +1,18 @@
-import Text from "src/styles/typography";
+import Footer from "src/components/Footer/Footer";
+import FormRegister from "src/components/FormRegister";
+import HeaderNav from "src/components/Header/Header";
+import { MainBase } from "src/styles/components/Main";
+
 
 const Register = () => {
   return (
-    <Text tag="h2" fontSize="title-3-500" color="brand3">
-      Register
-    </Text>
+    <>
+      <HeaderNav />
+      <MainBase>
+        <FormRegister />
+      </MainBase>
+      <Footer />
+    </>
   );
 };
 

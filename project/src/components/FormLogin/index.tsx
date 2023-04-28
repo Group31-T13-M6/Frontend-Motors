@@ -2,12 +2,14 @@ import { LinkBorder, MainButton } from "src/styles/components/ButtonsLink";
 import FormStyled from "src/styles/components/Form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IUserLogin } from "src/interfaces/login";
 import { useContextApi } from "src/context";
-import { Input } from "src/styles/components/FormComponents";
+import { Input, InputPassword } from "src/styles/components/FormComponents";
 import { colors } from "src/styles/components/Colors";
 import { useForm } from "react-hook-form";
 import Text from "src/styles/typography";
+import { IUserLogin } from "src/interfaces/user";
+import { useState } from "react";
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 const schema = yup.object().shape({
   email: yup
@@ -18,6 +20,7 @@ const schema = yup.object().shape({
 });
 
 const FormLogin = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { postLogin } = useContextApi();
   const {
     register,
@@ -32,28 +35,47 @@ const FormLogin = () => {
       </Text>
       <form onSubmit={handleSubmit(postLogin)}>
         <Input>
-          <label htmlFor="email">E-mail</label>
+          <label htmlFor="email" id="email-label">
+            E-mail
+          </label>
           <input
             id="email"
             type="email"
-            placeholder="Digitar email"
+            placeholder="Digitar seu email"
             {...register("email")}
+            aria-label="Digite seu e-mail"
+            aria-labelledby="email-label"
           />
+          <p>{errors.email?.message}</p>
         </Input>
-        <Input>
-          <label htmlFor="password">Senha</label>
-          <input
-            id="password"
-            type="password"
-            placeholder="Digitar senha"
-            {...register("password")}
-          />
+        <InputPassword>
+          <label htmlFor="password" id="password-label">
+            Senha
+          </label>
+          <div>
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Digitar senha"
+              {...register("password")}
+              aria-label="Digitar senha"
+              aria-labelledby="password-label"
+            />
+            <button
+              type="button"
+              onClick={() =>
+                showPassword ? setShowPassword(false) : setShowPassword(true)
+              }
+            >
+              {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </button>
+          </div>
           <p>{errors.password?.message}</p>
-        </Input>
+        </InputPassword>
         <MainButton type="submit" background={colors.brand1} textColor="white">
           Entrar
         </MainButton>
-        <p>Ainda não possui conta?</p>
+        <p className="register-question">Ainda não possui conta?</p>
         <LinkBorder href="/registro">Cadastrar</LinkBorder>
       </form>
     </FormStyled>
