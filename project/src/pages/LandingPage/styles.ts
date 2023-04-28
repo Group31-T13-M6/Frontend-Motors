@@ -31,11 +31,12 @@ export const Section = styled.section`
 
 export const Separator = styled.div`
   display: flex;
+  flex-wrap: wrap-reverse;
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
-  gap: 20px;
+  padding: 1rem 0;
+  gap: 1.25rem;
 `;
 
 export const Main = styled.main`

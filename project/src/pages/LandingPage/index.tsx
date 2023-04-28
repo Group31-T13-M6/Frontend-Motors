@@ -2,7 +2,6 @@ import Sidebar from "src/components/Sidebar/Sidebar";
 import Text from "src/styles/typography";
 import HeaderNav from "src/components/Header/Header";
 import Footer from "src/components/Footer/Footer";
-import SideBarMobile from "src/components/Sidebar/Mobile/SidebarMobile";
 import Card from "src/components/Card";
 import { Section, Main, Separator } from "./styles";
 import { useContext } from "react";
@@ -31,7 +30,6 @@ const LandingPage = () => {
       <Separator>
         <Sidebar />
         <Main>
-          <SideBarMobile />
           {announcements &&
             announcements.map((item: iProduct, index: number) => (
               <Card key={index} {...item} />
