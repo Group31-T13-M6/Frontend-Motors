@@ -57,7 +57,7 @@ const Product = () => {
             <section>
               <div>
                 <div>
-                  <img src={chosenProduct.images[0].url} alt="Imagem Product" />
+                  <img className="product-image" src={chosenProduct.images[0].url} alt="Imagem Product" />
                 </div>
               </div>
               <div>
@@ -110,7 +110,7 @@ const Product = () => {
                 <Text fontSize="title-6-600">{chosenProduct.user.name}</Text>
                 <Text>{chosenProduct.user.description}</Text>
 
-                <MainButton background="var(--grey0)" textColor="white">
+                <MainButton className="product-button" background="var(--grey0)" textColor="white">
                   Ver todos os anúncios
                 </MainButton>
               </div>

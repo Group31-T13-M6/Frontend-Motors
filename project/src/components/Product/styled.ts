@@ -31,9 +31,11 @@ const MainS = styled.main`
 
         margin-top: 45px;
 
-        width: 100%;
+        width: 95%;
         height: 355px;
+
         img {
+          max-width: 95%;
           object-fit: cover;
           object-position: center;
         }
@@ -49,7 +51,7 @@ const MainS = styled.main`
       background-color: var(--grey10);
       border-radius: 4px;
 
-      width: 100%;
+      width: 95%;
       height: 326.91px;
       padding: 28px;
 
@@ -85,7 +87,7 @@ const MainS = styled.main`
         background-color: var(--brand1);
         color: var(--whiteFixed);
         padding: 1rem;
-        width: 15%;
+        width: 30%;
         border-radius: 6px;
       }
     }
@@ -98,7 +100,7 @@ const MainS = styled.main`
       background-color: var(--grey10);
       border-radius: 4px;
 
-      width: 100%;
+      width: 95%;
       margin-top: 24px;
       padding: 36px 28px;
 
@@ -112,11 +114,12 @@ const MainS = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 2rem;
 
     & > div:first-child {
-      width: 95%;
-      max-width: 752px;
+      width: 100%;
       border-radius: 4px;
       background-color: yellow;
 
@@ -125,6 +128,7 @@ const MainS = styled.main`
       margin-bottom: 3rem;
 
       ul {
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -133,6 +137,24 @@ const MainS = styled.main`
 
         margin-top: 2rem;
       }
+    }
+
+    & > div:last-child {
+      background-color: var(--grey10);
+      width: 100%;
+      padding: 2rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  @media (max-width: 570px) {
+    .product-image {
+      width: 95%;
     }
   }
 
@@ -176,7 +198,7 @@ const MainS = styled.main`
       & > div:last-child {
         width: 95%;
         background-color: var(--grey10);
-        padding: 2rem 6rem;
+        padding: 2rem;
         border-radius: 4px;
         display: flex;
         justify-content: center;
@@ -185,7 +207,7 @@ const MainS = styled.main`
         gap: 1.2rem;
 
         & > button {
-          width: 100%;
+          width: 40%;
         }
       }
     }
