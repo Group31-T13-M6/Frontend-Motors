@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
     :root {
@@ -56,11 +56,12 @@ const Global = createGlobalStyle`
         --Heading-6-600: 600 1.25rem var(--font-family1);
         --Heading-6-500: 500 1.25rem var(--font-family1);
         --Heading-7-600: 600 1rem var(--font-family1);
-        --Heading-7-500: 500 1rem var(--font-family1);
+        --Heading-7-500: 500 0.85rem var(--font-family1);
         --body-1-400: 400 1rem var(--font-family2);
         --body-1-600: 600 1rem var(--font-family2);
         --body-2-400: 400 0.875rem var(--font-family2);
         --body-2-500: 500 0.875rem var(--font-family2);
+        --body-3-500: 500 .75rem var(--font-family2);
         --button-big-text: 600 1rem var(--font-family2);
         --button-medium-text: 600 0.875rem var(--font-family2);
         --input-placeholder: 400 1rem var(--font-family2);

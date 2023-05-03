@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from 'styled-components';
 
 interface IStyledInitialNameProps {
   w?: string;
@@ -13,8 +13,8 @@ const StyledInitialName = styled.p<IStyledInitialNameProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({w}) => (w ? `${w}px` : "30px")};
-  height: ${({h}) => (h ? `${h}px` : "30px")};
+  width: ${({ w }) => (w ? `${w}px` : '30px')};
+  height: ${({ h }) => (h ? `${h}px` : '30px')};
 `;
 
 export { StyledInitialName };
