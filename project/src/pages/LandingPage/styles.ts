@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Logo from "../../assets/svg_background.jpg";
+import styled from 'styled-components';
+import Logo from '../../assets/svg_background.jpg';
 
 export const Section = styled.section`
   position: relative;
@@ -19,7 +19,7 @@ export const Section = styled.section`
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -31,7 +31,7 @@ export const Section = styled.section`
 
 export const Separator = styled.div`
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
@@ -41,7 +41,28 @@ export const Separator = styled.div`
 
 export const Main = styled.main`
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  width: 80%;
+  max-width: 1171px;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+
+  @media (min-width: 930px) and (max-width: 1050px) {
+    width: 57%;
+  }
+
+  ul {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: 800px) {
+      padding: 0.5rem;
+      flex-wrap: nowrap;
+      overflow: overlay;
+    }
+  }
 `;

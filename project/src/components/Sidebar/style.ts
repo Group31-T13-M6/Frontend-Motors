@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Aside = styled.aside`
   width: 12rem;
-  height: 20rem;
+  height: 25rem;
   overflow: overlay;
 
   .filter-button {
@@ -43,7 +43,7 @@ export const Aside = styled.aside`
     margin-bottom: 10px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 800px) {
     display: none;
 
     .filter-button {
@@ -104,7 +104,7 @@ export const SectionFilter = styled.section`
   justify-content: space-around;
   align-items: center;
 
-  @media (min-width: 767px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;
