@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CardComponent = styled.li`
   margin-bottom: 2rem;
-  max-width: 328px;
+  max-width: 15.625rem;
   width: 100%;
   transition: all 0.3s;
   cursor: pointer;
@@ -16,6 +16,12 @@ const CardComponent = styled.li`
 
   .car-image {
     width: 100%;
+    height: 10rem;
+    object-fit: cover;
+
+    @media (max-width: 800px) {
+      height: 9rem;
+    }
   }
 
   .img-Wrapper {
@@ -51,7 +57,6 @@ const CardComponent = styled.li`
 
   .car-lowInfo-text p {
     background: var(--brand4);
-    padding: 10px;
   }
 `;
 

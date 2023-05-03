@@ -35,12 +35,12 @@ const LandingPage = () => {
     <>
       {!loading && <HeaderNav name={user?.name} id={user?.id} />}
       <Section>
-        <div className="intro-text">
-          <Text tag="h1" fontSize="title-2-600" color="grey10">
+        <div className='intro-text'>
+          <Text tag='h1' fontSize='title-2-600' color='grey10'>
             Motors Shop
           </Text>
 
-          <Text tag="p" fontSize="title-5-600" color="grey10">
+          <Text tag='p' fontSize='title-5-600' color='grey10'>
             A melhor plataforma de anúncios de carros do país
           </Text>
         </div>
@@ -49,10 +49,12 @@ const LandingPage = () => {
       <Separator>
         <Sidebar />
         <Main>
-          {announcements &&
-            announcements.map((item: iProduct, index: number) => (
-              <Card key={index} {...item} />
-            ))}
+          <ul>
+            {announcements &&
+              announcements.map((item: iProduct, index: number) => (
+                <Card key={index} {...item} />
+              ))}
+          </ul>
         </Main>
       </Separator>
       <Footer />
