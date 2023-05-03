@@ -1,14 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const CardComponent = styled.li`
-  margin-bottom: 2rem;
-  max-width: 15.625rem;
+  max-width: 312px;
+  min-width: 280px;
   width: 100%;
   transition: all 0.3s;
-  cursor: pointer;
   padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+
+  .main-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
   &:hover {
     scale: 1.03;
@@ -57,6 +64,21 @@ const CardComponent = styled.li`
 
   .car-lowInfo-text p {
     background: var(--brand4);
+  }
+
+  .car-OwnerButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button {
+      font: var(--body-2-500);
+      color: var(--grey1);
+      padding: 6px;
+      border: 1px solid var(--grey1);
+      border-radius: 4px;
+      background: none;
+    }
   }
 `;
 

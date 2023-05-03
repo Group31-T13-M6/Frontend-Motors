@@ -77,6 +77,11 @@ export interface iProduct {
   description: string;
   images: IProductImages[];
   user: IProductUser;
+  name?: string;
+  isActive: boolean;
+  status: boolean;
+  userSection?: boolean;
+  ownerSection?: boolean;
 }
 
 export interface iListProps {
@@ -96,6 +101,7 @@ export interface IHomeContext {
     id: string
   ) => Promise<AxiosResponse<IUserRequest> | undefined>;
   userSearched?: IUserRequest;
+  isOwner: boolean;
 }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
@@ -103,8 +109,9 @@ export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
 export const HomeProvider = ({ children }: iDefaultContextProps) => {
   const [list, setList] = useState<iListProps>({} as iListProps);
   const [user, setUser] = useState<IUserRequest>();
-  const [userSearched, setUserSearched] = useState<IUserRequest>();
   const [loading, setLoading] = useState(true);
+  const [isOwner, setIsOwner] = useState(false);
+  const [searchedId, setSearchedId] = useState('');
 
   const navigate = useNavigate();
 
@@ -143,12 +150,18 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
 
     try {
       const userSearched = await api.get(`users/${id}`);
+      setSearchedId(userSearched.data.id)
+      
       return userSearched;
     } catch (error) {
       console.error(error);
       navigate("/");
     } finally {
       setLoading(false);
+      
+      if(searchedId == user?.id) {
+        setIsOwner(true);
+      }
     }
   };
 
@@ -162,6 +175,7 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
         getProduct,
         getLoggedUser,
         getActualProfile,
+        isOwner
       }}
     >
       {children}

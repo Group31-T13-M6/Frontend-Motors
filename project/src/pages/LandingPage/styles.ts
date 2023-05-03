@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Logo from '../../assets/svg_background.jpg';
+import styled from "styled-components";
+import Logo from "../../assets/svg_background.jpg";
 
 export const Section = styled.section`
   position: relative;
@@ -19,7 +19,7 @@ export const Section = styled.section`
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

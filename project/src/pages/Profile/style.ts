@@ -3,8 +3,8 @@ import styled from "styled-components";
 const StyledMainProfile = styled.main`
   background: linear-gradient(
     to bottom,
-    var(--brand1) 50%,
-    var(--grey8) calc(100% - 516px)
+    var(--brand1) 35%,
+    var(--grey8) calc(55% - 516px)
   );
   display: flex;
   flex-direction: column;
@@ -25,6 +25,7 @@ const StyledMainProfile = styled.main`
     height: 100%;
     border-radius: 4px;
     padding: 2rem;
+    margin-top: 5rem;
 
     .advertiser-createButton {
       max-width: 150px;
@@ -58,7 +59,16 @@ const StyledMainProfile = styled.main`
   ul {
     margin-top: 4rem;
     display: flex;
-    gap: 1rem;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1580px;
+
+    flex-wrap: wrap;
+
+    span {
+      text-align: center;
+      width: 100%;
+    }
   }
 `;
 
