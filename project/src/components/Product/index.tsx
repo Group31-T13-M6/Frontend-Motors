@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Text from "src/styles/typography";
 import ImagemItem from "../ImageItem/ImageItem";
 import MainS from "./styled";
 import Footer from "../Footer/Footer";
-import HeaderNav from "../Header/Header";
+import HeaderNav from "../Header";
 import ModalImagens from "../ModalImagens/ModalImagens";
 import api from "src/services/api";
 import { useNavigate, useParams } from "react-router-dom";
-import { iProduct } from "src/context/HomeContext";
+import { HomeContext, iProduct } from "src/context/HomeContext";
 import { formatBRL, formatInitialName } from "src/services/helpers";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
@@ -15,10 +15,12 @@ import { MainButton } from "src/styles/components/ButtonsLink";
 const Product = () => {
   const [chosenProduct, setChosenProduct] = useState<iProduct>();
   const { id } = useParams();
+  const { user, loading, getLoggedUser } = useContext(HomeContext);
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
       try {
+        await getLoggedUser();
         const response = await api.get(`/announcements/${id}`);
         setChosenProduct(response.data);
       } catch (error) {
@@ -45,19 +47,29 @@ const Product = () => {
     setInfoModal({ img: info });
   };
 
+  const handleProfilePage = () => {
+    navigation(`/profile/${chosenProduct?.user.id}`);
+  };
+
   const [outClick, setOutClick] = useState(false);
   const [infoModal, setInfoModal] = useState({ img: "" });
 
   return (
     <>
-      {chosenProduct && (
+      {!chosenProduct ? (
+        <p>Loading...</p>
+      ) : (
         <>
-          <HeaderNav />
+          <HeaderNav id={user?.id} name={user?.name} />
           <MainS>
             <section>
               <div>
                 <div>
-                  <img className="product-image" src={chosenProduct.images[0].url} alt="Imagem Product" />
+                  <img
+                    className="product-image"
+                    src={chosenProduct.images[0].url}
+                    alt="Imagem Product"
+                  />
                 </div>
               </div>
               <div>
@@ -110,7 +122,12 @@ const Product = () => {
                 <Text fontSize="title-6-600">{chosenProduct.user.name}</Text>
                 <Text>{chosenProduct.user.description}</Text>
 
-                <MainButton className="product-button" background="var(--grey0)" textColor="white">
+                <MainButton
+                  className="product-button"
+                  background="var(--grey0)"
+                  textColor="white"
+                  onClick={handleProfilePage}
+                >
                   Ver todos os anúncios
                 </MainButton>
               </div>

@@ -1,20 +1,39 @@
 import Sidebar from "src/components/Sidebar/Sidebar";
 import Text from "src/styles/typography";
-import HeaderNav from "src/components/Header/Header";
+import HeaderNav from "src/components/Header";
 import Footer from "src/components/Footer/Footer";
 import Card from "src/components/Card";
 import { Section, Main, Separator } from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { HomeContext, iProduct } from "src/context/HomeContext";
 
 const LandingPage = () => {
   const {
     list: { announcements },
+    user,
+    loading,
+    getProduct,
+    getLoggedUser,
   } = useContext(HomeContext);
 
-  return (
+  useEffect(() => {
+    const fetchHomePage = async () => {
+      try {
+        await getProduct();
+        await getLoggedUser();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchHomePage();
+  }, []);
+
+  return loading ? (
+    <p>Loading...</p>
+  ) : (
     <>
-      <HeaderNav />
+      {!loading && <HeaderNav name={user?.name} id={user?.id} />}
       <Section>
         <div className="intro-text">
           <Text tag="h1" fontSize="title-2-600" color="grey10">

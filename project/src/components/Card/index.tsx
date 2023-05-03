@@ -1,4 +1,4 @@
-import { iProduct } from "src/context/HomeContext";
+import { IUserRequestAnnouncements, iProduct } from "src/context/HomeContext";
 import Text from "src/styles/typography";
 import CardComponent from "./style";
 import { formatBRL, formatInitialName } from "src/services/helpers";
@@ -17,10 +17,14 @@ const Card = ({
 }: iProduct) => {
   const navigate = useNavigate();
 
+  const handleRedirect = () => {
+    navigate(`/produto/${id}`);
+  };
+
   return (
-    <CardComponent onClick={() => navigate(`/produto/${id}`)}>
+    <CardComponent onClick={handleRedirect}>
       <div>
-        <img className="car-image" src={images[0].url} alt="" />
+        <img className="car-image" src={images && images[0].url} alt="" />
         <div className="car-mainInfo">
           <Text tag="h2" fontSize="title-7-600" color="grey1">
             {brand}
@@ -31,10 +35,10 @@ const Card = ({
         </div>
         <div className="car-advertiser">
           <StyledInitialName w="30" h="30">
-            {user.name[0]}
+            {user?.name && user.name[0]}
           </StyledInitialName>
           <Text tag="p" fontSize="body-2-500" color="grey2">
-            {user.name}
+            {user?.name}
           </Text>
         </div>
         <div className="car-lowInfo">
@@ -57,4 +61,3 @@ const Card = ({
 };
 
 export default Card;
-
