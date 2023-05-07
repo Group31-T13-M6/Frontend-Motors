@@ -7,6 +7,8 @@ export const FooterEnd = styled.footer`
 
   button {
     background-color: var(--grey1);
+    border-radius: 50%;
+    padding: 0.5rem;
 
     svg {
       color: var(--grey10);

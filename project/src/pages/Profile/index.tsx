@@ -7,12 +7,19 @@ import { HomeContext, IUserRequest } from "src/context/HomeContext";
 import { StyledMainProfile } from "./style";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
+import Footer from "src/components/Footer/Footer";
+import { StyledModalContainer } from "src/components/Modals/ModalAnnouncement/style";
+import ModalContainer from "src/components/Modals/ModalAnnouncement";
+import ModalAnnouncement from "src/components/Modals/ModalAnnouncement";
+import App from "src/App";
+import { App2 } from "src/components/Modals/TestModal";
 
 const Profile = () => {
   const { user, loading, getActualProfile, getLoggedUser, isOwner } =
     useContext(HomeContext);
   const { id } = useParams();
   const [userSearched, setUserSearched] = useState<IUserRequest>();
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -31,6 +38,9 @@ const Profile = () => {
     <p>Loading...</p>
   ) : (
     <>
+      <ModalAnnouncement open={openModal} setOpenModal={setOpenModal} />
+      {/* <App2 /> */}
+
       <HeaderNav id={user?.id} name={user?.name} />
       <StyledMainProfile>
         <div className="advertiser-info">
@@ -50,7 +60,9 @@ const Profile = () => {
           </Text>
           {userSearched?.id == user?.id && (
             <div className="advertiser-createButton">
-              <MainButton>Criar Anúncio</MainButton>
+              <MainButton onClick={() => setOpenModal(true)}>
+                Criar Anúncio
+              </MainButton>
             </div>
           )}
         </div>
@@ -74,6 +86,7 @@ const Profile = () => {
           )}
         </ul>
       </StyledMainProfile>
+      <Footer />
     </>
   );
 };
