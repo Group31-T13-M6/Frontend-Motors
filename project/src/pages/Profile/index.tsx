@@ -8,11 +8,8 @@ import { StyledMainProfile } from "./style";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 import Footer from "src/components/Footer/Footer";
-import { StyledModalContainer } from "src/components/Modals/ModalAnnouncement/style";
-import ModalContainer from "src/components/Modals/ModalAnnouncement";
 import ModalAnnouncement from "src/components/Modals/ModalAnnouncement";
-import App from "src/App";
-import { App2 } from "src/components/Modals/TestModal";
+
 
 const Profile = () => {
   const { user, loading, getActualProfile, getLoggedUser, isOwner } =
@@ -39,7 +36,6 @@ const Profile = () => {
   ) : (
     <>
       <ModalAnnouncement open={openModal} setOpenModal={setOpenModal} />
-      {/* <App2 /> */}
 
       <HeaderNav id={user?.id} name={user?.name} />
       <StyledMainProfile>
