@@ -1,5 +1,6 @@
 import { IPropsStyle } from "src/interfaces/styles";
 import styled from "styled-components";
+import { colors } from "../Colors";
 
 export const LinkBorder = styled.a<IPropsStyle>`
   cursor: pointer;
@@ -25,7 +26,7 @@ export const LinkBorder = styled.a<IPropsStyle>`
 
 export const MainButton = styled.button<IPropsStyle>`
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: ${(props) => props.radius || "4px"};
   transition: 0.3s;
 
   display: flex;
@@ -40,6 +41,26 @@ export const MainButton = styled.button<IPropsStyle>`
   font: ${(props) => props.font || "var(--button-big-text)"};
 
   &:hover {
+    transition: 0.3s;
+    transform: scale(1.01);
+  }
+
+  :disabled {
+    background: ${(props) =>
+      props.backgroundDisabled || props.background || "transparent"};
+  }
+`;
+
+export const OptionsButton = styled.button`
+  height: 24px;
+  padding: 0 12px;
+  color: ${colors.grey3};
+  border-radius: 12px;
+  background: ${colors.grey7};
+  font: var(--body-3-500);
+
+  &:hover {
+    color: ${colors.grey1};
     transition: 0.3s;
     transform: scale(1.01);
   }

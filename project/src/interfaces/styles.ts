@@ -69,6 +69,7 @@ export type IColor =
   | 'random10'
   | 'random11'
   | 'random12';
+
 export interface ITitleComponent {
   tag?: ITag;
   children: React.ReactNode;
@@ -89,4 +90,7 @@ export interface IPropsStyle {
   gap?: string;
   placeholderColor?: string;
   placeholderColorFocus?: string;
+  radius?: string;
+  padding?: string;
+  backgroundDisabled?: string;
 }

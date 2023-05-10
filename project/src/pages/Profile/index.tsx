@@ -3,16 +3,18 @@ import Text from "src/styles/typography";
 import Card from "src/components/Card";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { HomeContext, IUserRequest } from "src/context/HomeContext";
+import { HomeContext } from "src/context/HomeContext";
 import { StyledMainProfile } from "./style";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
+import { IProduct } from "src/interfaces/products";
+import { IUser } from "src/interfaces/user";
 
 const Profile = () => {
   const { user, loading, getActualProfile, getLoggedUser, isOwner } =
     useContext(HomeContext);
   const { id } = useParams();
-  const [userSearched, setUserSearched] = useState<IUserRequest>();
+  const [userSearched, setUserSearched] = useState<IUser>();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -57,18 +59,24 @@ const Profile = () => {
 
         <ul>
           {userSearched?.announcements[0] ? (
-            userSearched?.announcements?.map((item: any, index) => {
-              return (
-                <Card
-                  key={index + item.brand}
-                  {...item}
-                  status={user?.id != userSearched.id}
-                  userSection={user?.id != userSearched.id}
-                  name={user?.id != userSearched.id ? userSearched?.name : null}
-                  ownerSection={user?.id == userSearched.id}
-                />
-              );
-            })
+            userSearched?.announcements?.map(
+              (item: IProduct, index: number) => {
+                return (
+                  <Card
+                    key={index + item.brand}
+                    {...item}
+                    status={user?.id !== userSearched.id}
+                    userSection={user?.id !== userSearched.id}
+                    name={
+                      user?.id !== userSearched.id
+                        ? userSearched?.name
+                        : undefined
+                    }
+                    ownerSection={user?.id === userSearched.id}
+                  />
+                );
+              }
+            )
           ) : (
             <Text tag="span"> Nenhum anúncio encontrado.... </Text>
           )}
