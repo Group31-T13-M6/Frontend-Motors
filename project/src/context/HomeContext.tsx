@@ -25,6 +25,7 @@ export interface IHomeContext {
   getAnnouncementId(id: string): void;
   postComment(data: IUpdateAndRegisterComment): void;
   deleteComment(id: string): void;
+  updateComment(id: string, data: IUpdateAndRegisterComment): void;
 }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
@@ -117,6 +118,15 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
     }
   };
 
+  const updateComment = async (id: string, data: IUpdateAndRegisterComment) => {
+    try {
+      await api.patch(`/comments/${id}`, data);
+      getAnnouncementId(chosenProduct?.id as string);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <HomeContext.Provider
       value={{
@@ -133,6 +143,7 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
         setChosenProduct,
         postComment,
         deleteComment,
+        updateComment,
       }}
     >
       {children}
