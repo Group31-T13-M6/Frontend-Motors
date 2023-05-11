@@ -9,7 +9,8 @@ import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 import Footer from "src/components/Footer/Footer";
 import ModalAnnouncement from "src/components/Modals/ModalAnnouncement";
-
+import { IProduct } from "src/interfaces/products";
+import { IUser } from "src/interfaces/user";
 
 const Profile = () => {
   const { user, loading, getActualProfile, getLoggedUser, isOwner } =
@@ -23,7 +24,7 @@ const Profile = () => {
       try {
         await getLoggedUser();
         const response = await getActualProfile(id!);
-        const actualProfile = response?.data;
+        const actualProfile: any = response?.data;
         setUserSearched(actualProfile);
       } catch (err) {}
     };
@@ -65,18 +66,24 @@ const Profile = () => {
 
         <ul>
           {userSearched?.announcements[0] ? (
-            userSearched?.announcements?.map((item: any, index) => {
-              return (
-                <Card
-                  key={index + item.brand}
-                  {...item}
-                  status={user?.id != userSearched.id}
-                  userSection={user?.id != userSearched.id}
-                  name={user?.id != userSearched.id ? userSearched?.name : null}
-                  ownerSection={user?.id == userSearched.id}
-                />
-              );
-            })
+            userSearched?.announcements?.map(
+              (item: any, index: number) => {
+                return (
+                  <Card
+                    key={index + item.brand}
+                    {...item}
+                    status={user?.id !== userSearched.id}
+                    userSection={user?.id !== userSearched.id}
+                    name={
+                      user?.id !== userSearched.id
+                        ? userSearched?.name
+                        : undefined
+                    }
+                    ownerSection={user?.id === userSearched.id}
+                  />
+                );
+              }
+            )
           ) : (
             <Text tag="span"> Nenhum anúncio encontrado.... </Text>
           )}

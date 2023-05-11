@@ -1,10 +1,10 @@
-import { IUserRequestAnnouncements, iProduct } from "src/context/HomeContext";
 import Text from "src/styles/typography";
 import CardComponent from "./style";
 import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
 import { useNavigate } from "react-router-dom";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
+import { IProduct } from "src/interfaces/products";
 
 const Card = ({
   id,
@@ -20,7 +20,7 @@ const Card = ({
   status,
   userSection,
   ownerSection,
-}: iProduct) => {
+}: IProduct) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {

@@ -5,7 +5,8 @@ import Footer from "src/components/Footer/Footer";
 import Card from "src/components/Card";
 import { Section, Main, Separator } from "./styles";
 import { useContext, useEffect } from "react";
-import { HomeContext, iProduct } from "src/context/HomeContext";
+import { HomeContext} from "src/context/HomeContext";
+import { IProduct } from "src/interfaces/products";
 
 const LandingPage = () => {
   const {
@@ -51,7 +52,7 @@ const LandingPage = () => {
         <Main>
           <ul>
             {announcements &&
-              announcements.map((item: iProduct, index: number) => (
+              announcements.map((item: IProduct, index: number) => (
                 <Card key={index} {...item} status={false} userSection={true}/>
               ))}
           </ul>
