@@ -1,7 +1,26 @@
 import styled from "styled-components";
 import Modal from "react-modal";
 
-const StyledModalAnnouncement = styled.div`
+const customStylesAnnouncement = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    maxWidth: "480px",
+    width: "95%",
+    height: "95%",
+    overflow: "auto",
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: "100",
+  },
+};
+
+const StyledModalAnnouncement = styled.form`
   max-width: 480px;
   width: 100%;
 
@@ -86,4 +105,5 @@ export {
   StyledSectionAnnouncement,
   StyledActionsButtons,
   StyledActionsButtons2,
+  customStylesAnnouncement,
 };

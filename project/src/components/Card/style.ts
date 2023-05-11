@@ -24,7 +24,8 @@ const CardComponent = styled.li`
   .car-image {
     width: 100%;
     height: 10rem;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 
     @media (max-width: 800px) {
       height: 9rem;

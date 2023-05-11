@@ -8,7 +8,7 @@ import ModalImagens from "../ModalImagens/ModalImagens";
 import api from "src/services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { HomeContext, iProduct } from "src/context/HomeContext";
-import { formatBRL, formatInitialName } from "src/services/helpers";
+import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 
@@ -67,7 +67,10 @@ const Product = () => {
                 <div>
                   <img
                     className="product-image"
-                    src={chosenProduct.images[0].url}
+                    src={
+                      (isImageUrl(chosenProduct.images[0].url)) ||
+                      "https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png"
+                    }
                     alt="Imagem Product"
                   />
                 </div>

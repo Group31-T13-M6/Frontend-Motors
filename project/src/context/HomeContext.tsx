@@ -2,6 +2,9 @@ import { createContext, useState, useEffect } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { AxiosResponse } from "axios";
+import { IUseFormAnnouncement } from "src/interfaces/Modals/announcement";
+import { desformatBRL } from "src/services/helpers";
+import { MockFuelInverter } from "./Mocks";
 
 export interface IUserRequestAnnouncements {
   id: string;
@@ -102,6 +105,7 @@ export interface IHomeContext {
   ) => Promise<AxiosResponse<IUserRequest> | undefined>;
   userSearched?: IUserRequest;
   isOwner: boolean;
+  createAnnouncement: (data: IUseFormAnnouncement) => Promise<void>;
 }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
@@ -111,7 +115,7 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
   const [user, setUser] = useState<IUserRequest>();
   const [loading, setLoading] = useState(true);
   const [isOwner, setIsOwner] = useState(false);
-  const [searchedId, setSearchedId] = useState('');
+  const [searchedId, setSearchedId] = useState("");
 
   const navigate = useNavigate();
 
@@ -150,18 +154,32 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
 
     try {
       const userSearched = await api.get(`users/${id}`);
-      setSearchedId(userSearched.data.id)
-      
+      setSearchedId(userSearched.data.id);
+
       return userSearched;
     } catch (error) {
       console.error(error);
       navigate("/");
     } finally {
       setLoading(false);
-      
-      if(searchedId == user?.id) {
+
+      if (searchedId == user?.id) {
         setIsOwner(true);
       }
+    }
+  };
+
+  const createAnnouncement = async (data: IUseFormAnnouncement) => {
+    const fipe_table = desformatBRL(data.fipe_table);
+    const fuel = MockFuelInverter[data.fuel];
+
+    try {
+      await api.post(`announcements`, {...data, fuel, fipe_table});
+      console.log();
+      
+    } catch (error) {
+      console.error(error);
+      navigate("/");
     }
   };
 
@@ -175,7 +193,8 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
         getProduct,
         getLoggedUser,
         getActualProfile,
-        isOwner
+        createAnnouncement,
+        isOwner,
       }}
     >
       {children}

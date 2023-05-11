@@ -1,7 +1,7 @@
 import { IUserRequestAnnouncements, iProduct } from "src/context/HomeContext";
 import Text from "src/styles/typography";
 import CardComponent from "./style";
-import { formatBRL, formatInitialName } from "src/services/helpers";
+import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
 import { useNavigate } from "react-router-dom";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
@@ -45,7 +45,14 @@ const Card = ({
             {isActive ? "Ativo" : "Inativo"}
           </MainButton>
         )}
-        <img className="car-image" src={images && images[0].url} alt="" />
+        <img
+          className="car-image"
+          src={
+            (images && isImageUrl(images[0].url)) ||
+            "https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png"
+          }
+          alt=""
+        />
         <div className="car-mainInfo">
           <Text tag="h2" fontSize="title-7-600" color="grey1">
             {brand}

@@ -1,7 +1,12 @@
 import Text from "src/styles/typography";
 import { StyledButtonClose } from "./style";
 
-const ButtonModalClose = ({ title, setState }: any) => {
+interface IButtonModalCloseProps {
+  title: string;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ButtonModalClose = ({ title, setState }: IButtonModalCloseProps) => {
   const handleClose = () => setState(false);
   return (
     <StyledButtonClose>

@@ -1,90 +1,60 @@
-import { IProvider } from "src/interfaces/contextApi";
+import api from "src/services/api";
+import Modal from "react-modal";
+import ButtonModalClose from "../ButtonClose";
+import Text from "src/styles/typography";
+import { useContext, useEffect, useState } from "react";
+import { AxiosError } from "axios";
+import { MockColors, MockFuel } from "src/context/Mocks";
+import {
+  IActualModelProps,
+  IBrandOptions,
+  ICarsProps,
+  IModalAnnouncementProps,
+  IUseFormAnnouncement,
+} from "src/interfaces/Modals/announcement";
 import {
   StyledActionsButtons,
   StyledActionsButtons2,
   StyledModalAnnouncement,
   StyledSectionAnnouncement,
   StyledSelectAnnouncement,
+  customStylesAnnouncement,
 } from "./style";
-import Modal from "react-modal";
-import ButtonModalClose from "../ButtonClose";
-import Text from "src/styles/typography";
-import { useEffect, useState } from "react";
-import { AxiosError } from "axios";
-import api from "src/services/api";
-
-interface IModalAnnouncementProps {
-  open: boolean;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface IArrayCars {
-  name: string;
-}
-
-interface ICarsProps {
-  chevrolet: IArrayCars[];
-  citroen: IArrayCars[];
-  fiat: IArrayCars[];
-  ford: IArrayCars[];
-  honda: IArrayCars[];
-  hyundai: IArrayCars[];
-  nissan: IArrayCars[];
-  peugeot: IArrayCars[];
-  renault: IArrayCars[];
-  toyota: IArrayCars[];
-  volkswagen: IArrayCars[];
-}
-
-type IBrandOptions =
-  | "chevrolet"
-  | "citroen"
-  | "fiat"
-  | "ford"
-  | "honda"
-  | "hyundai"
-  | "nissan"
-  | "peugeot"
-  | "renault"
-  | "toyota"
-  | "volkswagen";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth: "480px",
-    width: "95%",
-    height: "95%",
-    overflow: "auto",
-  },
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: "100",
-  },
-};
+import { formatBRL } from "src/services/helpers";
+import { useForm, useFieldArray } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAnnouncementSchema } from "src/schema/announcements";
+import { HomeContext } from "src/context/HomeContext";
 
 const ModalAnnouncement = ({ open, setOpenModal }: IModalAnnouncementProps) => {
+  const { createAnnouncement } = useContext(HomeContext);
   const [inputCounter, setInputCounter] = useState([0, 0, 0]);
+  const [loading, setLoading] = useState(true);
   const [cars, setCars] = useState<ICarsProps>();
-  const [selectedCar, setSelectedCar] = useState<IBrandOptions>("chevrolet");
+  const [actualModel, setActualModel] = useState<IActualModelProps>(
+    {} as IActualModelProps
+  );
+  const [selectedBrand, setSelectedBrand] =
+    useState<IBrandOptions>("chevrolet");
+  const [selectedBrandCars, setSelectedBrandCars] = useState<
+    IActualModelProps[]
+  >([]);
 
-  const handleClose = () => setOpenModal(false);
-  const addArray = () => {
-    if (inputCounter.length < 6) {
-      setInputCounter([...inputCounter, 0]);
-    }
-  };
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+    control,
+  } = useForm<IUseFormAnnouncement>({
+    resolver: yupResolver(createAnnouncementSchema),
+  });
 
-  const removeArray = () => {
-    if (inputCounter.length > 3) {
-      setInputCounter([...inputCounter.slice(0, -1)]);
-    }
-  };
+  const { fields, append, remove, update } = useFieldArray({
+    control,
+    name: "images",
+  });
+
+  const handleCloseModal = () => setOpenModal(false);
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -92,6 +62,7 @@ const ModalAnnouncement = ({ open, setOpenModal }: IModalAnnouncementProps) => {
         const response = await api.get(
           "https://kenzie-kars.herokuapp.com/cars"
         );
+
         setCars(response.data);
       } catch (err) {
         if (err instanceof AxiosError) {
@@ -104,23 +75,85 @@ const ModalAnnouncement = ({ open, setOpenModal }: IModalAnnouncementProps) => {
     fetchCars();
   }, []);
 
-  return (
+  useEffect(() => {
+    const fetchCarsBrand = async () => {
+      try {
+        const response = await api.get(
+          `https://kenzie-kars.herokuapp.com/cars?brand=${selectedBrand}`
+        );
+
+        setActualModel(response.data[0]);
+        setSelectedBrandCars(response.data);
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          const error = err.response?.data;
+          console.log(error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCarsBrand();
+  }, [selectedBrand]);
+
+  const handleActualModel = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const findElement = selectedBrandCars.find(
+      (elem) => elem.name === e.target.value
+    );
+    return setActualModel(findElement || selectedBrandCars[0]);
+  };
+
+  const handleActualBrand = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value as IBrandOptions;
+    return setSelectedBrand(value);
+  };
+
+  const addImageInput = () => {
+    if (inputCounter.length < 6) {
+      setInputCounter([...inputCounter, 0]);
+    }
+  };
+
+  const removeImageInput = () => {
+    const lastIndex = inputCounter.length - 1;
+    if (inputCounter.length > 3) {
+      setInputCounter([...inputCounter.slice(0, -1)]);
+      remove(lastIndex);
+    }
+  };
+
+  const handleDynamicsInputs = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (fields[index]) {
+      return update(index, {
+        position: index + 1,
+        url: e.target.value,
+      });
+    }
+
+    return append({ position: index + 1, url: e.target.value });
+  };
+
+  return loading ? null : (
     <Modal
       isOpen={open}
-      onRequestClose={handleClose}
-      style={customStyles}
+      onRequestClose={handleCloseModal}
+      style={customStylesAnnouncement}
       contentLabel="Any modal"
       ariaHideApp={false}
     >
-      <StyledModalAnnouncement>
+      <StyledModalAnnouncement onSubmit={handleSubmit(createAnnouncement)}>
         <ButtonModalClose title="Criar anúncio" setState={setOpenModal} />
         <Text>Informações do veículo</Text>
 
         <StyledSelectAnnouncement>
           <label htmlFor="select-brand">Marca</label>
           <select
-            onChange={(e) => setSelectedCar(e.target.value as IBrandOptions)}
-            name="select-brand"
+            {...register("brand")}
+            onChange={handleActualBrand}
             id="select-brand"
           >
             {cars &&
@@ -130,71 +163,120 @@ const ModalAnnouncement = ({ open, setOpenModal }: IModalAnnouncementProps) => {
                 </option>
               ))}
           </select>
+          <Text fontSize="input-label" color="alert1">
+            {errors?.brand?.message}
+          </Text>
         </StyledSelectAnnouncement>
 
         <StyledSelectAnnouncement>
           <label htmlFor="select-model">Modelo</label>
-          <select name="select-model" id="select-model">
-            {cars &&
-              cars[selectedCar].map((car: IArrayCars) => (
-                <option key={car.name}>{car.name}</option>
+          <select
+            {...register("model")}
+            onChange={handleActualModel}
+            id="select-model"
+          >
+            {selectedBrandCars &&
+              selectedBrandCars.map((car: IActualModelProps, index: number) => (
+                <option value={car.name} key={car.name}>
+                  {car.name}
+                </option>
               ))}
           </select>
+          <Text fontSize="input-label" color="alert1">
+            {errors?.model?.message}
+          </Text>
         </StyledSelectAnnouncement>
 
         <StyledSectionAnnouncement>
           <StyledSelectAnnouncement>
-            <label htmlFor="select-year">Ano</label>
-            <select name="select-year" id="select-year">
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-            </select>
+            <label htmlFor="input-year">Ano</label>
+            <input
+              id="input-year"
+              {...register("year")}
+              value={actualModel.year}
+              readOnly
+            />
+            <Text fontSize="input-label" color="alert1">
+              {errors?.year?.message}
+            </Text>
           </StyledSelectAnnouncement>
           <StyledSelectAnnouncement>
-            <label htmlFor="select-fuel">Combustível</label>
-            <select name="select-fuel" id="select-fuel">
-              <option value="1">Flex</option>
-              <option value="2">Híbrido</option>
-              <option value="3">Elétrico</option>
-            </select>
+            <label htmlFor="input-fuel">Combustível</label>
+            <input
+              {...register("fuel")}
+              id="input-fuel"
+              value={MockFuel[actualModel.fuel]}
+              readOnly
+            />
+            <Text fontSize="input-label" color="alert1">
+              {errors?.fuel?.message}
+            </Text>
           </StyledSelectAnnouncement>
         </StyledSectionAnnouncement>
 
         <StyledSectionAnnouncement>
           <StyledSelectAnnouncement>
             <label htmlFor="input-km">Quilometragem</label>
-            <input placeholder="30.000" id="input-km" type="number" />
+            <input
+              required
+              {...register("mileage")}
+              placeholder="30.000"
+              id="input-km"
+              type="number"
+            />
+            <Text fontSize="input-label" color="alert1">
+              {errors?.mileage?.message}
+            </Text>
           </StyledSelectAnnouncement>
           <StyledSelectAnnouncement>
             <label htmlFor="select-color">Cor</label>
-            <select name="select-color" id="select-color">
-              <option value="azul">Azul</option>
-              <option value="branca">Branca</option>
-              <option value="cinza">Cinza</option>
-              <option value="prata">Prata</option>
-              <option value="preta">Preta</option>
-              <option value="verde">Verde</option>
-              <option value="outros">Outros</option>
+            <select {...register("color")} id="select-color">
+              {MockColors.map((color) => (
+                <option key={color} value={color}>
+                  {color}
+                </option>
+              ))}
             </select>
+            <Text fontSize="input-label" color="alert1">
+              {errors?.color?.message}
+            </Text>
           </StyledSelectAnnouncement>
         </StyledSectionAnnouncement>
 
         <StyledSectionAnnouncement>
           <StyledSelectAnnouncement>
             <label htmlFor="select-pricef">Preço tabela FIPE</label>
-            <input id="select-pricef" placeholder="R$ 48.000,00" disabled />
+            <input
+              {...register("fipe_table")}
+              id="select-pricef"
+              value={formatBRL(actualModel.value)}
+              readOnly
+            />
+            <Text fontSize="input-label" color="alert1">
+              {errors?.fipe_table?.message}
+            </Text>
           </StyledSelectAnnouncement>
           <StyledSelectAnnouncement>
             <label htmlFor="input-price">Preço</label>
-            <input name="input-price" id="select-price" type="number" />
+            <input
+              {...register("price")}
+              required
+              placeholder="R$ 30.000,00"
+              id="select-price"
+              type="number"
+            />
+            <Text fontSize="input-label" color="alert1">
+              {errors?.price?.message}
+            </Text>
           </StyledSelectAnnouncement>
         </StyledSectionAnnouncement>
 
         <StyledSelectAnnouncement>
           <label htmlFor="text-description">Descrição</label>
-          <textarea name="text-description" id="text-description" />
+          <textarea {...register("description")} id="text-description" />
+          <Text fontSize="input-label" color="alert1">
+            {errors?.description?.message}
+          </Text>
         </StyledSelectAnnouncement>
 
         {inputCounter.map((_, index) => (
@@ -202,19 +284,29 @@ const ModalAnnouncement = ({ open, setOpenModal }: IModalAnnouncementProps) => {
             <label htmlFor="text-description">
               {index === 0 ? "Imagem da Capa" : `${index}° Imagem da galeria`}
             </label>
-            <input placeholder="https://image.com" type="text" />
+            <input
+              onChange={(e) => handleDynamicsInputs(e, index)}
+              placeholder="https://image.com"
+              type="text"
+            />
           </StyledSelectAnnouncement>
         ))}
 
+        <Text fontSize="input-label" color="alert1">
+          {errors?.images?.message}
+        </Text>
+
         <StyledActionsButtons>
-          <button onClick={addArray}>
+          <button type="button" onClick={addImageInput}>
             Adicionar campo pra imagem da galeria
           </button>
-          <button onClick={removeArray}>Remover campo</button>
+          <button type="button" onClick={removeImageInput}>
+            Remover campo
+          </button>
         </StyledActionsButtons>
 
         <StyledActionsButtons2>
-          <button onClick={handleClose}>Cancelar</button>
+          <button onClick={handleCloseModal}>Cancelar</button>
           <button>Criar anúncio</button>
         </StyledActionsButtons2>
       </StyledModalAnnouncement>

@@ -36,7 +36,8 @@ const MainS = styled.main`
 
         img {
           max-width: 95%;
-          object-fit: cover;
+          width: 280px;
+          object-fit: contain;
           object-position: center;
         }
       }

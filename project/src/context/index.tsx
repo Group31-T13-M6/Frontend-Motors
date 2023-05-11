@@ -13,8 +13,6 @@ export const AuthProvider = ({ children }: IProvider) => {
   const navigate = useNavigate();
 
   const postLogin = async (data: IUserLogin) => {
-    console.log('Executou login')
-
     try {
       const response = await api.post("/login", data);
       const token = response.data.token;
@@ -27,7 +25,7 @@ export const AuthProvider = ({ children }: IProvider) => {
 
   const postRegister = async (data: IUserRegister) => {
     try {
-      const response = await api.post("/users", data);
+      await api.post("/users", data);
       navigate("/dashboardUsuario");
     } catch (error) {
       if (error instanceof AxiosError) {
