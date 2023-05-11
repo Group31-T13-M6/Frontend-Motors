@@ -11,11 +11,18 @@ import { HomeContext, iProduct } from "src/context/HomeContext";
 import { formatBRL, formatInitialName } from "src/services/helpers";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
+import ModalUpdateUser from "../Modals/ModalUpdateUser";
 
 const Product = () => {
   const [chosenProduct, setChosenProduct] = useState<iProduct>();
   const { id } = useParams();
-  const { user, loading, getLoggedUser } = useContext(HomeContext);
+  const {
+    user,
+    loading,
+    getLoggedUser,
+    openUpdateUserModal,
+    setOpenUpdateUserModal,
+  } = useContext(HomeContext);
 
   useEffect(() => {
     const fetchAnnouncement = async () => {
@@ -56,6 +63,10 @@ const Product = () => {
 
   return (
     <>
+      <ModalUpdateUser
+        open={openUpdateUserModal}
+        setOpenModal={setOpenUpdateUserModal}
+      />
       {!chosenProduct ? (
         <p>Loading...</p>
       ) : (

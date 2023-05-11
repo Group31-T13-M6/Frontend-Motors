@@ -4,7 +4,7 @@ import { useContextApi } from "src/context";
 import { useForm } from "react-hook-form";
 import { createUserSchema } from "src/schema/user";
 import { IUserRegister } from "src/interfaces/user";
-import { cepMask, cpfMask, dateMask, phoneMask } from "./masks";
+import { cepMask, cpfMask, dateMask, phoneMask } from "../../services/masks";
 import {
   Input,
   InputPassword,

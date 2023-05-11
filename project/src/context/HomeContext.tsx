@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
+import { IUserUpdate } from "src/interfaces/user";
 
 export interface IUserRequestAnnouncements {
   id: string;
@@ -102,6 +103,12 @@ export interface IHomeContext {
   ) => Promise<AxiosResponse<IUserRequest> | undefined>;
   userSearched?: IUserRequest;
   isOwner: boolean;
+  patchUser(data: IUserUpdate): void;
+  openUpdateUserModal: boolean;
+  setOpenUpdateUserModal: React.Dispatch<React.SetStateAction<boolean>>;
+  openUpdateAddressModal: boolean;
+  setOpenUpdateAddressModal: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteUser: () => Promise<void>;
 }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
@@ -111,7 +118,9 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
   const [user, setUser] = useState<IUserRequest>();
   const [loading, setLoading] = useState(true);
   const [isOwner, setIsOwner] = useState(false);
-  const [searchedId, setSearchedId] = useState('');
+  const [searchedId, setSearchedId] = useState("");
+  const [openUpdateUserModal, setOpenUpdateUserModal] = useState(false);
+  const [openUpdateAddressModal, setOpenUpdateAddressModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -150,17 +159,50 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
 
     try {
       const userSearched = await api.get(`users/${id}`);
-      setSearchedId(userSearched.data.id)
-      
+      setSearchedId(userSearched.data.id);
+      setUser(userSearched.data);
       return userSearched;
     } catch (error) {
       console.error(error);
       navigate("/");
     } finally {
       setLoading(false);
-      
-      if(searchedId == user?.id) {
+
+      if (searchedId === user?.id) {
         setIsOwner(true);
+      }
+    }
+  };
+
+  const patchUser = async (data: IUserUpdate) => {
+    try {
+      if (user) {
+        await api.patch(`/users/${user.id}`, data);
+        getActualProfile(user.id);
+      }
+      setOpenUpdateUserModal(false);
+    } catch (error: any) {
+      console.error(error);
+
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
+      }
+    }
+  };
+
+  const deleteUser = async () => {
+    try {
+      if (user) {
+        await api.delete(`/users/${user.id}`);
+        setUser(undefined);
+      }
+      setOpenUpdateUserModal(false);
+      navigate("/");
+    } catch (error: any) {
+      console.error(error);
+
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
       }
     }
   };
@@ -175,7 +217,13 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
         getProduct,
         getLoggedUser,
         getActualProfile,
-        isOwner
+        isOwner,
+        patchUser,
+        openUpdateUserModal,
+        setOpenUpdateUserModal,
+        openUpdateAddressModal,
+        setOpenUpdateAddressModal,
+        deleteUser,
       }}
     >
       {children}

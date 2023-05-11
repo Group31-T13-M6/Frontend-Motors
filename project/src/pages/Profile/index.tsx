@@ -9,11 +9,17 @@ import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 import Footer from "src/components/Footer/Footer";
 import ModalAnnouncement from "src/components/Modals/ModalAnnouncement";
-
+import ModalUpdateUser from "src/components/Modals/ModalUpdateUser";
 
 const Profile = () => {
-  const { user, loading, getActualProfile, getLoggedUser, isOwner } =
-    useContext(HomeContext);
+  const {
+    user,
+    loading,
+    getActualProfile,
+    getLoggedUser,
+    openUpdateUserModal,
+    setOpenUpdateUserModal,
+  } = useContext(HomeContext);
   const { id } = useParams();
   const [userSearched, setUserSearched] = useState<IUserRequest>();
   const [openModal, setOpenModal] = useState(false);
@@ -29,12 +35,17 @@ const Profile = () => {
     };
 
     fetchProfile();
+    // eslint-disable-next-line
   }, []);
 
   return loading ? (
     <p>Loading...</p>
   ) : (
     <>
+      <ModalUpdateUser
+        open={openUpdateUserModal}
+        setOpenModal={setOpenUpdateUserModal}
+      />
       <ModalAnnouncement open={openModal} setOpenModal={setOpenModal} />
 
       <HeaderNav id={user?.id} name={user?.name} />
@@ -54,7 +65,7 @@ const Profile = () => {
           <Text fontSize="body-1-400" color="grey2">
             {userSearched?.description}
           </Text>
-          {userSearched?.id == user?.id && (
+          {userSearched?.id === user?.id && (
             <div className="advertiser-createButton">
               <MainButton onClick={() => setOpenModal(true)}>
                 Criar Anúncio
@@ -70,10 +81,12 @@ const Profile = () => {
                 <Card
                   key={index + item.brand}
                   {...item}
-                  status={user?.id != userSearched.id}
-                  userSection={user?.id != userSearched.id}
-                  name={user?.id != userSearched.id ? userSearched?.name : null}
-                  ownerSection={user?.id == userSearched.id}
+                  status={user?.id !== userSearched.id}
+                  userSection={user?.id !== userSearched.id}
+                  name={
+                    user?.id !== userSearched.id ? userSearched?.name : null
+                  }
+                  ownerSection={user?.id === userSearched.id}
                 />
               );
             })

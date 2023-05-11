@@ -6,6 +6,7 @@ import Card from "src/components/Card";
 import { Section, Main, Separator } from "./styles";
 import { useContext, useEffect } from "react";
 import { HomeContext, iProduct } from "src/context/HomeContext";
+import ModalUpdateUser from "src/components/Modals/ModalUpdateUser";
 
 const LandingPage = () => {
   const {
@@ -14,6 +15,8 @@ const LandingPage = () => {
     loading,
     getProduct,
     getLoggedUser,
+    openUpdateUserModal,
+    setOpenUpdateUserModal,
   } = useContext(HomeContext);
 
   useEffect(() => {
@@ -33,6 +36,10 @@ const LandingPage = () => {
     <p>Loading...</p>
   ) : (
     <>
+    <ModalUpdateUser
+        open={openUpdateUserModal}
+        setOpenModal={setOpenUpdateUserModal}
+      />
       {!loading && <HeaderNav name={user?.name} id={user?.id} />}
       <Section>
         <div className="intro-text">

@@ -3,12 +3,16 @@ import styled from "styled-components";
 interface IPropsStyled {
   height?: string;
   padding?: string;
+  width?: string;
+  widthChildren?: string;
+  maxWidth?: string
+  maxFormWidth?: string
 }
 
 const FormStyled = styled.section<IPropsStyled>`
   padding: 35px 5px 35px 5px;
-  width: 90%;
-  max-width: 400px;
+  width: ${(props) => props.width || "90%"};
+  max-width: ${(props) => props.maxWidth || "400px"};
   margin-bottom: 2rem;
 
   display: flex;
@@ -16,20 +20,25 @@ const FormStyled = styled.section<IPropsStyled>`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: var(--grey10);
 
   border-radius: 4px;
   font: var(--input-label);
 
   h2 {
-    width: 90%;
+    width: ${(props) => props.widthChildren || "90%"};
     text-align: start;
     font: var(--Heading-5-500);
   }
 
+  h3 {
+    width: ${(props) => props.widthChildren || "90%"};
+    text-align: start;
+    font: var(--body-2-500);
+  }
+
   form {
     width: 100%;
-    max-width: 380px;
+    max-width: ${(props) => props.maxFormWidth || "380px"};;
     height: ${(props) => props.height || "380px"};
     padding: ${(props) => props.padding || "0"};
 
@@ -52,7 +61,7 @@ const FormStyled = styled.section<IPropsStyled>`
   }
 
   .two-components {
-    width: 90%;
+    width: ${(props) => props.widthChildren || "90%"};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,6 +74,13 @@ const FormStyled = styled.section<IPropsStyled>`
   }
   .address-label-type-user {
     width: 90%;
+  }
+
+  .update-user {
+    width: ${(props) => props.widthChildren || "90%"};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 

@@ -11,3 +11,5 @@ export const formatInitialName = (value: string) => {
     .map((str) => str[0])
     .join("");
 };
+
+

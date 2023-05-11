@@ -25,3 +25,17 @@ interface IAddressRegister {
   complement?: string;
   userId: string;
 }
+
+
+export interface IUserUpdate {
+  name: string;
+  email: string;
+  cpf: string;
+  phone_number: string;
+  date_birth: string;
+  description: string;
+  type_user: string;
+  password?: string;
+  confirmPassword?: string;
+}
+

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
     :root {
@@ -87,6 +87,19 @@ const Global = createGlobalStyle`
     button {
       cursor: pointer;
       transition: 0.5s;
+    }
+
+    .modal {
+        top: 50%;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        max-width: 480px;
+        width: 95%;
+        height: 95%;
+        overflow: auto;
     }
 `;
 

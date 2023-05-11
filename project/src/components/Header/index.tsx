@@ -6,7 +6,7 @@ import { DivHeader, HeaderContainer } from "./style";
 import logo from "../../assets/Motors-shop.svg";
 import { HomeContext } from "src/context/HomeContext";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { colors } from "src/styles/components/Colors";
 
 interface IHeaderNavProps {
@@ -16,6 +16,7 @@ interface IHeaderNavProps {
 
 const HeaderNav = ({ name, id }: IHeaderNavProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { setOpenUpdateUserModal } = useContext(HomeContext);
 
   const navigate = useNavigate();
 
@@ -25,8 +26,8 @@ const HeaderNav = ({ name, id }: IHeaderNavProps) => {
   };
 
   const handleAnnouncementPage = () => {
-    navigate(`/profile/${id}`)
-  }
+    navigate(`/profile/${id}`);
+  };
 
   return id ? (
     <Header>
@@ -45,6 +46,10 @@ const HeaderNav = ({ name, id }: IHeaderNavProps) => {
               width="70%"
               textColor={colors.grey2}
               font="var(--body-1-400)"
+              type="button"
+              onClick={() => {
+                setOpenUpdateUserModal(true);
+              }}
             >
               Editar Perfil
             </MainButton>
@@ -53,6 +58,7 @@ const HeaderNav = ({ name, id }: IHeaderNavProps) => {
               width="70%"
               textColor={colors.grey2}
               font="var(--body-1-400)"
+              type="button"
             >
               Editar endereço
             </MainButton>
