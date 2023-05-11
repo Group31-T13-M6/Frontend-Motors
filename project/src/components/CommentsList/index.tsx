@@ -12,8 +12,8 @@ const CommentsList = ({ comments }: IProps) => {
       <h3>Comentários</h3>
       <ul>
         {comments ? (
-          comments.map((comment) => {
-            return <CommentLi comment={comment} />;
+          comments.map((comment, index) => {
+            return <CommentLi key={comment.id + index} comment={comment} />;
           })
         ) : (
           <p>Seja o primeiro a comentar!</p>

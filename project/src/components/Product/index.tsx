@@ -6,20 +6,14 @@ import HeaderNav from "../Header";
 import ModalImagens from "../ModalImagens/ModalImagens";
 import api from "src/services/api";
 import { useNavigate, useParams } from "react-router-dom";
-<<<<<<< HEAD
-import { HomeContext, iProduct } from "src/context/HomeContext";
-import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
-=======
 import { HomeContext } from "src/context/HomeContext";
-import { formatBRL, formatInitialName } from "src/services/helpers";
->>>>>>> 890455d6a00002bd018037e16e2776b3e66880cc
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 import CommentsList from "../CommentsList";
 import CommentRegister from "../CommentRegister";
-import { MainBase } from "src/styles/components/Main";
-import SectionInfoProduct from "./styled";
+import { MainProduct, SectionInfoProduct } from "./styled";
 import { colors } from "src/styles/components/Colors";
+import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
 
 const Product = () => {
   const { id } = useParams();
@@ -37,8 +31,6 @@ const Product = () => {
       }
     };
     fetchAnnouncement();
-
-    // eslint-disable-next-line
   }, []);
 
   const navigation = useNavigate();
@@ -71,7 +63,7 @@ const Product = () => {
       ) : (
         <>
           <HeaderNav id={user?.id} name={user?.name} />
-          <MainBase direction="column" mTop="0" padding=".5rem 0">
+          <MainProduct>
             <SectionInfoProduct>
               <div className="background-brand"></div>
               <section className="setion-right">
@@ -79,7 +71,7 @@ const Product = () => {
                   <img
                     className="product-image"
                     src={
-                      (isImageUrl(chosenProduct.images[0].url)) ||
+                      isImageUrl(chosenProduct.images[0].url) ||
                       "https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png"
                     }
                     alt="Imagem Product"
@@ -167,7 +159,7 @@ const Product = () => {
               <CommentsList comments={chosenProduct.comments} />
               <CommentRegister />
             </section>
-          </MainBase>
+          </MainProduct>
 
           <Footer />
         </>

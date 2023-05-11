@@ -53,7 +53,6 @@ export const HeaderContainer = styled.div<IHeaderStyle>`
       padding: 10px 0;
       top: 75px;
       right: 0px;
-      width: 100vw;
 
       border-bottom: var(--grey6) 2px solid;
       background-color: var(--grey10);
@@ -158,7 +157,7 @@ export const DivHeader = styled.div<IHeaderStyle>`
         flex-direction: column;
         justify-content: start;
 
-        width: 100vw;
+        /* width: 100vw; */
         height: 8rem;
         right: 0;
         background-color: white;

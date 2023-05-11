@@ -37,7 +37,6 @@ const CommentLi = ({ comment }: IProps) => {
       setSubmitDisabled(false);
       setValue("content", content);
       console.log(comment);
-      
     } else {
       setSubmitDisabled(true);
     }
@@ -72,12 +71,7 @@ const CommentLi = ({ comment }: IProps) => {
               >
                 Editar
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  deleteComment(comment.id);
-                }}
-              >
+              <button type="button" onClick={() => deleteComment(comment.id)}>
                 Deletar
               </button>
             </nav>

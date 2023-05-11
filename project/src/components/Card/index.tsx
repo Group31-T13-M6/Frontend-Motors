@@ -1,7 +1,7 @@
 import Text from "src/styles/typography";
 import CardComponent from "./style";
 import { formatBRL, formatInitialName, isImageUrl } from "src/services/helpers";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { StyledInitialName } from "src/styles/components/StyledInitialName";
 import { MainButton } from "src/styles/components/ButtonsLink";
 import { IProduct } from "src/interfaces/products";
@@ -22,6 +22,7 @@ const Card = ({
   ownerSection,
 }: IProduct) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleRedirect = () => {
     if (!status) {
@@ -32,7 +33,11 @@ const Card = ({
   };
 
   return (
-    <CardComponent onClick={handleRedirect}>
+    <CardComponent
+      onClick={
+        location.pathname.includes("profile") ? () => {} : handleRedirect
+      }
+    >
       <div className="main-div">
         {status && (
           <MainButton
@@ -88,8 +93,8 @@ const Card = ({
         </div>
         {ownerSection && (
           <div className="car-OwnerButtons">
-            <button>Editar</button>
-            <button>Ver detalhes</button>
+            <button onClick={() => alert("editar")}>Editar</button>
+            <button onClick={handleRedirect}>Ver detalhes</button>
           </div>
         )}
       </div>

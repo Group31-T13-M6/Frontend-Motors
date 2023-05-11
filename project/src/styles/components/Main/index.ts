@@ -9,7 +9,7 @@ interface IProps {
 
 export const MainBase = styled.main<IProps>`
   background-color: var(--grey8);
-  width: ${(props) => props.width || "100vw"};
+  width: ${(props) => props.width || "100%"};
   min-height: 100vh;
   margin-top: ${(props) => props.mTop || "5rem"};
   padding: ${(props) => props.padding || "2rem 0"};

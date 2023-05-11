@@ -5,6 +5,9 @@ import { AxiosResponse } from "axios";
 import { IUseFormAnnouncement } from "src/interfaces/Modals/announcement";
 import { desformatBRL } from "src/services/helpers";
 import { MockFuelInverter } from "./Mocks";
+import { IUser } from "src/interfaces/user";
+import { IListProps, IProduct } from "src/interfaces/products";
+import { IUpdateAndRegisterComment } from "src/interfaces/comments";
 
 export interface IUserRequestAnnouncements {
   id: string;
@@ -50,9 +53,6 @@ export interface IUserRequest {
   address: IUserRequestAddress;
   announcements: IUserRequestAnnouncements[];
 }
-import { IUser } from "src/interfaces/user";
-import { IListProps, IProduct } from "src/interfaces/products";
-import { IUpdateAndRegisterComment } from "src/interfaces/comments";
 
 export interface iDefaultContextProps {
   children: React.ReactNode;
@@ -75,6 +75,9 @@ export interface IHomeContext {
   postComment(data: IUpdateAndRegisterComment): void;
   deleteComment(id: string): void;
   updateComment(id: string, data: IUpdateAndRegisterComment): void;
+  openModal: boolean;
+  update: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const HomeContext = createContext<IHomeContext>({} as IHomeContext);
@@ -84,6 +87,8 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
   const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(true);
   const [isOwner, setIsOwner] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [searchedId, setSearchedId] = useState("");
   const [chosenProduct, setChosenProduct] = useState<IProduct>();
 
@@ -110,6 +115,7 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const user = await api.get(`users`);
+      console.log(user.data);
       setUser(user.data);
       return;
     } catch (error) {
@@ -144,7 +150,13 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
     const fuel = MockFuelInverter[data.fuel];
 
     try {
-      await api.post(`announcements`, { ...data, fuel, fipe_table });
+      await api.post(`announcements`, {
+        ...data,
+        fuel,
+        fipe_table,
+      });
+      setUpdate(!update);
+      setOpenModal(false);
     } catch (error) {
       console.error(error);
       navigate("/");
@@ -171,6 +183,7 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
   };
 
   const deleteComment = async (id: string) => {
+    console.log(id);
     try {
       await api.delete(`/comments/${id}`);
       getAnnouncementId(chosenProduct?.id as string);
@@ -206,6 +219,9 @@ export const HomeProvider = ({ children }: iDefaultContextProps) => {
         postComment,
         deleteComment,
         updateComment,
+        openModal,
+        setOpenModal,
+        update,
       }}
     >
       {children}

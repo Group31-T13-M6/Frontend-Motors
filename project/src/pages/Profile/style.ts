@@ -59,7 +59,8 @@ const StyledMainProfile = styled.main`
   ul {
     margin-top: 4rem;
     display: flex;
-    gap: 4rem;
+    justify-content: space-between;
+    gap: 3rem;
     width: 100%;
     max-width: 1580px;
 

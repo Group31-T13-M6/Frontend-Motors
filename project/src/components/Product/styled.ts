@@ -1,5 +1,26 @@
 import styled from "styled-components";
 
+const MainProduct = styled.main`
+  padding: 0.5rem 0;
+  background-color: var(--grey8);
+  min-height: 100vh;
+  width: 100%;
+
+  .section-comments-mobile {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 1240px) {
+    .section-comments-mobile {
+      display: none;
+    }
+  }
+`;
+
 const SectionInfoProduct = styled.section`
   display: flex;
   flex-direction: column;
@@ -23,7 +44,6 @@ const SectionInfoProduct = styled.section`
     z-index: 2;
     top: 0;
 
-    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,24 +64,16 @@ const SectionInfoProduct = styled.section`
       margin-top: 45px;
       height: 355px;
 
-<<<<<<< HEAD
-        margin-top: 45px;
+      margin-top: 45px;
 
-        width: 95%;
-        height: 355px;
+      width: 95%;
+      height: 355px;
 
-        img {
-          max-width: 95%;
-          width: 280px;
-          object-fit: contain;
-          object-position: center;
-        }
-=======
       img {
         max-width: 95%;
-        object-fit: cover;
+        width: 280px;
+        object-fit: contain;
         object-position: center;
->>>>>>> 890455d6a00002bd018037e16e2776b3e66880cc
       }
     }
 
@@ -207,7 +219,6 @@ const SectionInfoProduct = styled.section`
       & > section:nth-child(1),
       section:nth-child(2) {
         width: 100%;
-        
       }
     }
 
@@ -242,4 +253,4 @@ const SectionInfoProduct = styled.section`
   }
 `;
 
-export default SectionInfoProduct;
+export { MainProduct, SectionInfoProduct };

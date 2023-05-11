@@ -13,11 +13,17 @@ import { IProduct } from "src/interfaces/products";
 import { IUser } from "src/interfaces/user";
 
 const Profile = () => {
-  const { user, loading, getActualProfile, getLoggedUser, isOwner } =
-    useContext(HomeContext);
+  const {
+    user,
+    loading,
+    getActualProfile,
+    getLoggedUser,
+    openModal,
+    setOpenModal,
+    update,
+  } = useContext(HomeContext);
   const { id } = useParams();
   const [userSearched, setUserSearched] = useState<IUserRequest>();
-  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -30,7 +36,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [update]);
 
   return loading ? (
     <p>Loading...</p>
@@ -66,24 +72,22 @@ const Profile = () => {
 
         <ul>
           {userSearched?.announcements[0] ? (
-            userSearched?.announcements?.map(
-              (item: any, index: number) => {
-                return (
-                  <Card
-                    key={index + item.brand}
-                    {...item}
-                    status={user?.id !== userSearched.id}
-                    userSection={user?.id !== userSearched.id}
-                    name={
-                      user?.id !== userSearched.id
-                        ? userSearched?.name
-                        : undefined
-                    }
-                    ownerSection={user?.id === userSearched.id}
-                  />
-                );
-              }
-            )
+            userSearched?.announcements?.map((item: any, index: number) => {
+              return (
+                <Card
+                  key={index + item.brand}
+                  {...item}
+                  status={user?.id !== userSearched.id}
+                  userSection={user?.id !== userSearched.id}
+                  name={
+                    user?.id !== userSearched.id
+                      ? userSearched?.name
+                      : undefined
+                  }
+                  ownerSection={user?.id === userSearched.id}
+                />
+              );
+            })
           ) : (
             <Text tag="span"> Nenhum anúncio encontrado.... </Text>
           )}
